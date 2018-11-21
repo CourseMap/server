@@ -1,0 +1,27 @@
+html, body, #Canvas{
+    height: 100%;
+    margin: 0;
+}
+#Canvas{
+    width: 100%;
+    border: solid 3px black;
+}
+.grade{
+    float: left;
+    background-color: cyan;
+    /* margin: 50px; */
+    padding: 0;
+    border: solid 1px black;
+    margin-left: 0;
+    margin-right: 7.4vw;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Microsoft JhengHei;
+}
+#grade_last{
+    margin-right: 0;
+}
+.container{
+    padding: 10vh 0;
+    margin: 0 3.7vw;
+}
