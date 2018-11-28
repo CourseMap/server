@@ -6,21 +6,22 @@ const port = 11121
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-const key = fs.readFileSync('/home/wp2018/ssl/private.key')
-const cert = fs.readFileSync('/home/wp2018/ssl/certificate.crt')
-
-var opt = {
-  key: key,
-  cert: cert
-}
-
-https.createServer(opt, app).listen(port, function(){
-  console.log("---Connected---");
-})
-
-// app.listen(port, function(){
+// for luffy https
+// const key = fs.readFileSync('/home/wp2018/ssl/private.key')
+// const cert = fs.readFileSync('/home/wp2018/ssl/certificate.crt')
+//
+// var opt = {
+//   key: key,
+//   cert: cert
+// }
+//
+// https.createServer(opt, app).listen(port, function(){
 //   console.log("---Connected---");
 // })
+
+app.listen(port, function(){
+  console.log("---Connected---");
+})
 
 app.use(express.static(__dirname + '/public'))
 //need this to execute "POST"
