@@ -1,135 +1,27 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About Us</title>
-    <link rel="stylesheet" type="text/css" href="about.css" />
-</head>
-
-<body>
-    <div class="nav">
-        <ul>
-            <li class="Home"><a href="">Home</a></li>
-            <li class="About"><a href="">About Us</a></li>
-            <li class="About"><a href="/main/main.html">Main Page</a></li>
-        </ul>
-    </div>
-    <div class="logo">
-        <h1>Welcome to COURSEMAP</h1>
-    </div>
-    <div class="idea">
-        <div id="words">
-            <h1>創作理念</h1>
-            <h2>剛進大學的你，是否對課程的規劃和安排都不甚理解？</h2>
-            <h2>透過CourseMap，能讓使用者了解自己即將修習的專業課程<br>並做更進一步的規劃</h2>
-            <h2>希望世界可以更好！Make the world better!</h2>
-        </div>
-    </div>
-    <div class="use">
-        <div id="words">
-            <h1>CourseMap<br>可以幹麻？</h1>
-            <h2 id="build_your_map">打造屬於你的課程地圖</h2>
-            <h2>必修、選修  甚至是任何你曾修過的課程</h2>
-            <h2>1.了解自己系上四年的課程規劃<br>
-                2.自行加入想修的課程，為自己的未來做安排<br>
-                3.為重要的課程Highlight，申請研究所更好用！</h2>
-        </div>
-
-
-
-    </div>
-    <div class="container">
-        <div id="item1" onmouseover="hover_in(this)" onmouseout="hover_out(this)">
-            <div class="pic"></div>
-            <div class="content">
-                <h1>蔡育哲</h1>
-                <h2>統計109</h2>
-                <h2>Product Manager</h2>
-                <a href="https://www.facebook.com/profile.php?id=100000865990162" target="_blank">
-                    <div class="fb_icon"></div>
-                </a>
-                <a href="https://github.com/Roytsai27" target="_blank">
-                    <div class="github_icon"></div>
-                </a>
-            </div>
-        </div>
-        <div id="item2" onmouseover="hover_in(this)" onmouseout="hover_out(this)">
-            <div class="pic"></div>
-            <div class="content">
-                <h1>馬少倫</h1>
-                <h2>統計109</h2>
-                <h2>Product Manager</h2>
-                <a href="https://www.facebook.com/shaolun.ma" target="_blank">
-                    <div class="fb_icon"></div>
-                </a>
-                <a href="https://github.com/qwertyannie" target="_blank">
-                    <div class="github_icon"></div>
-                </a>
-            </div>
-
-        </div>
-        <div id="item3" onmouseover="hover_in(this)" onmouseout="hover_out(this)">
-            <div class="pic"></div>
-            <div class="content">
-                <h1>黃政瑋</h1>
-                <h2>資訊110</h2>
-                <h2>Front-end Developer</h2>
-                <a href="https://www.facebook.com/aqwefghnm" target="_blank">
-                    <div class="fb_icon"></div>
-                </a>
-                <a href="https://github.com/aqwefghnm/" target="_blank">
-                    <div class="github_icon"></div>
-                </a>
-            </div>
-        </div>
-        <div id="item4" onmouseover="hover_in(this)" onmouseout="hover_out(this)">
-            <div class="pic"></div>
-            <div class="content">
-                <h1>黃心渝</h1>
-                <h2>電機110</h2>
-                <h2>Back-end Developer</h2>
-                <a href="https://www.facebook.com/profile.php?id=100021710384904" target="_blank">
-                    <div class="fb_icon"></div>
-                </a>
-                <a href="https://github.com/Sinyu104" target="_blank">
-                    <div class="github_icon"></div>
-                </a>
-            </div>
-        </div>
-        <div id="item5" onmouseover="hover_in(this)" onmouseout="hover_out(this)">
-            <div class="pic"></div>
-            <div class="content">
-                <h1>賴柏瑜</h1>
-                <h2>CSIE 108</h2>
-                <h2>Front-end Developer</h2>
-                <a href="https://www.facebook.com/profile.php?id=100000700291247" target="_blank">
-                    <div class="fb_icon"></div>
-                </a>
-                <a href="https://github.com/Bobby-Lai" target="_blank">
-                    <div class="github_icon"></div>
-                </a>
-            </div>
-        </div>
-        <div id="item6" onmouseover="hover_in(this)" onmouseout="hover_out(this)">
-            <div class="pic"></div>
-            <div class="content">
-                <h1>吳瑋倢</h1>
-                <h2>工資108</h2>
-                <h2>Back-end Developer</h2>
-                <a href="https://www.facebook.com/chiehwuuu" target="_blank">
-                    <div class="fb_icon"></div>
-                </a>
-                <a href="https://github.com/hugecat" target="_blank">
-                    <div class="github_icon"></div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="./about.js"></script>
-</body>
-
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="login.css">
+    </head>
+    <body>
+        <h1>Welcome to use Course Map</h1>
+        <form action="../public/About/index.html">
+            <a>
+                姓名：
+                <input type="text" id="name">
+            </a>
+            <br><br>
+            <a>
+                系所：
+                <input type="text" id="department">
+            </a>
+            <br><br>
+            <a>
+                <input type="submit" >
+            </a>
+        </form>
+        <!-- <script src="../MainPage/main.js"></script> -->
+    </body>
 </html>

@@ -167,7 +167,7 @@ body{
     box-shadow: 0 0 60px 4px rgb(223, 223, 223);
 }
 #item1{
-    grid-area: item1;  
+    grid-area: item1;
 }
 #item2{
     grid-area: item2;
@@ -246,5 +246,3 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-

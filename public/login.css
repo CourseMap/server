@@ -1,0 +1,19 @@
+body{
+    background-image: radial-gradient(circle, cyan, violet);
+}
+body > h1{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 4vw;
+}
+
+body > form{
+    text-align: center;
+    font-size: 3vw;
+    
+}
+input{
+    height: 2.5vw;
+    font-size: 2vw;
+    vertical-align: middle;
+}
