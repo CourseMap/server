@@ -20,39 +20,39 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 //   console.log("---Connected---");
 // })
 
-app.use(session({
-  secret: '2C44-4D44-WppQ38S',
-  resave: true,
-  saveUninitialized: true
-}));
-
-var auth = function(req, res, next) {
-  if(req.session && req.session.user === "hugecat" && req.session.admin)
-    return next();
-  else
-    return res.sendStatus(401);
-};
-
-//Login endpoint
-app.get('/login', function(req,res) {
-  if(!req.query.username || !req.query.password) {
-    res.send('login failed');
-  } else if(req.query.username === "hugecat" || req.query.password === "pass")
-    req.session.user = "hugecat";
-    res.session.admin = true;
-    res.send("login success!");
-});
-
-//Logout endpoint
-app.get('/logout', function(req, res) {
-  req.session.destroy();
-  res.send("logout succcess!");
-});
-
-//Get content endpoint
-app.get('/content', auth, function(req,res) {
-  res.send("Please log in first.");
-});
+// app.use(session({
+//   secret: '2C44-4D44-WppQ38S',
+//   resave: true,
+//   saveUninitialized: true
+// }));
+//
+// var auth = function(req, res, next) {
+//   if(req.session && req.session.user === "hugecat" && req.session.admin)
+//     return next();
+//   else
+//     return res.sendStatus(401);
+// };
+//
+// //Login endpoint
+// app.get('/login', function(req,res) {
+//   if(!req.query.username || !req.query.password) {
+//     res.send('login failed');
+//   } else if(req.query.username === "hugecat" || req.query.password === "pass")
+//     req.session.user = "hugecat";
+//     res.session.admin = true;
+//     res.send("login success!");
+// });
+//
+// //Logout endpoint
+// app.get('/logout', function(req, res) {
+//   req.session.destroy();
+//   res.send("logout succcess!");
+// });
+//
+// //Get content endpoint
+// app.get('/content', auth, function(req,res) {
+//   res.send("Please log in first.");
+// });
 
 app.listen(port, function(){
   console.log("---Connected---");
