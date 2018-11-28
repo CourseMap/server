@@ -3,8 +3,10 @@ html, body, #Canvas{
     margin: 0;
 }
 #Canvas{
-    width: 100%;
+    width: 99%;
     border: solid 3px black;
+    margin: auto;
+    /* overflow: hidden; */
 }
 .grade{
     float: left;
