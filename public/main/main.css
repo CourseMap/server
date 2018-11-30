@@ -2,28 +2,66 @@ html, body, #Canvas{
     height: 100%;
     margin: 0;
 }
+/*Main Page*/
 #Canvas{
     width: 99%;
     border: solid 3px black;
     margin: auto;
-    /* overflow: hidden; */
 }
-.grade{
-    float: left;
-    background-color: cyan;
-    /* margin: 50px; */
-    padding: 0;
-    border: solid 1px black;
-    margin-left: 0;
-    margin-right: 7.4vw;
-    font-size: 30px;
+#MainPage, #Canvas{
+    display: none;
+}
+.semester_container{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 1rem;
+}
+#sem1, #sem2, #sem3, #sem4, #sem5, #sem6, #sem7, #sem8{
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#information1, #information2{
+    margin-left: 2rem;
+}
+/*Login Page*/
+#LoginPage{
+    background-image: radial-gradient(circle, cyan, violet);
+    height: 100%;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
+#LoginPage > h1{
+    font-size: 5rem;
+    margin-bottom: 3rem;
+}
+.form_container{
+    margin:0px auto;
+    text-align: left;
+    width: 50%;
+    /* border: 3px solid black; */
+}
+input, select, option{
+    height: 5rem; 
+    width: 300px;
+    vertical-align: middle;
+}
+#login_button{
+    width: 100px;
+}
+/* alert modal*/
+#dia{
+    font-size: 3rem;
     font-weight: bold;
-    font-family: Microsoft JhengHei;
 }
-#grade_last{
-    margin-right: 0;
+div.ui.approve.button{
+    font-size: 1.5rem;
+    font-weight: bold;
 }
-.container{
-    padding: 10vh 0;
-    margin: 0 3.7vw;
-}
+
+

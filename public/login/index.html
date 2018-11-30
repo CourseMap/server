@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <title>Login</title>
         <link rel="stylesheet" href="login.css">
-        <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
     </head>
     <body>
         <h1>Welcome to use Course Map</h1>
-        <form action="../main/main.html">
             <a>
                 姓名：
-                <input type="text" id="login-name">
+                <input type="text" name="name" id="login-name">
             </a>
             <br><br>
             <a>
                 系所：
-                <input type="text" id="login-department">
+                <input type="text" name="dept" id="login-department">
             </a>
             <br><br>
             <a>
-                <input type="submit" id="login-submit">
+                <button id="login-submit">submit</button>
             </a>
-        </form>
-        <!-- <script src="../MainPage/main.js"></script> -->
+        <div id="showdata"></div>
+
+        <script src="login.js"></script>
     </body>
 </html>

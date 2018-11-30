@@ -2,26 +2,56 @@
 <html>
     <head>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.8.33/go-debug.js"></script>
-        <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
         <title>Course Map</title>
         <meta charset="utf-8">
-
+    
     </head>
     <body>
-        <h1 id="information">Information</h1>
-        <div class="container">
-            <div class="grade">大一上</div>
-            <div class="grade">大一下</div>
-            <div class="grade">大二上</div>
-            <div class="grade">大二下</div>
-            <div class="grade">大三上</div>
-            <div class="grade">大三下</div>
-            <div class="grade">大四上</div>
-            <div class="grade" id="grade_last">大四下</div>
+        <div id="LoginPage">
+            <h1>Welcome to use Course Map</h1>
+            <div class="form_container">
+                <a>
+                    姓名：
+                    <input type="text" id="name" placeholder="User" maxlength="7" autofocus required>
+                </a>
+                <br><br>
+                <a>
+                    系所：
+                    <select name="department" id="department" required> 
+                        <option value="No">--請選擇系所--</option>
+                    </select>
+                    <input id="login_button" type="submit" value="登入" onclick="submit_data()">
+                </a>
+                <br><br>
+            </div>
         </div>
-
+        <div id="MainPage">
+            <h1 id="information1">Information1</h1>
+            <h1 id="information2">Information2</h1>
+            <div class="semester_container">
+                <div id="sem1"></div>
+                <div id="sem2"></div>
+                <div id="sem3"></div>
+                <div id="sem4"></div>
+                <div id="sem5"></div>
+                <div id="sem6"></div>
+                <div id="sem7"></div>
+                <div id="sem8"></div>        
+            </div>      
+        </div>
         <div id="Canvas"></div>
+        <div class="ui modal">
+            <div class="content">
+              <p id="dia"></p>
+            </div>
+            <div class="actions">
+                <div class="ui approve button">Ok!</div>
+            </div>
+        </div>
         <script src="./main.js"></script>
     </body>
 </html>

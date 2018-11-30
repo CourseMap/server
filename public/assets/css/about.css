@@ -1208,6 +1208,31 @@ input, select, textarea {
 		}
 
 		@media screen and (max-width: 980px) {
+			.container{
+				    /*height: 580px;*/
+				    /*margin: 7.6vh;*/
+    				/*padding: 0 3% 3% 3%;*/
+    				padding: 3% 3% 3% 3%;
+    				position: relative;
+    				display: grid;
+    				grid-template-areas:
+    				'item1  item2'
+    				'item3  item4'
+    				'item5  item6';
+
+ 				    grid-template-rows: 400px 400px 400px;
+    				grid-template-columns: 350px 350px;
+    				grid-row-gap: 30px;
+    				grid-column-gap: 30px;
+			}
+
+			.pic{
+				height: 400px;
+				/*width: 350px;*/
+				width: 100%;
+				overflow: hidden;
+				background-position: 100% 15%;
+			}
 
 			.row {
 				display: flex;
@@ -1454,6 +1479,10 @@ input, select, textarea {
 
 		@media screen and (max-width: 736px) {
 
+			.container{
+    			grid-template-columns: 330px 330px;
+			}
+
 			.row {
 				display: flex;
 				flex-wrap: wrap;
@@ -1698,6 +1727,23 @@ input, select, textarea {
 		}
 
 		@media screen and (max-width: 480px) {
+
+			.container{
+    				padding: 3% 3% 3% 3%;
+    				position: relative;
+    				display: grid;
+    				grid-template-areas:
+    				'item1'
+    				'item2'
+    				'item3'
+    				'item4'
+    				'item5'
+    				'item6';
+
+ 				    grid-template-rows: 400px 400px 400px 400px 400px 400px;
+    				grid-template-columns: 350px;
+    				grid-row-gap: 50px;
+			}
 
 			.row {
 				display: flex;

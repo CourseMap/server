@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const session = require('express-session')
+// const session = require('express-session')
 const fs = require('fs')
 const https = require('https')
 const port = 11121
@@ -19,6 +19,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 // https.createServer(opt, app).listen(port, function(){
 //   console.log("---Connected---");
 // })
+
+
 
 // app.use(session({
 //   secret: '2C44-4D44-WppQ38S',
@@ -54,6 +56,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 //   res.send("Please log in first.");
 // });
 
+var deptInfo = fs.readFileSync("all_department_with_credit.json");
+
 app.listen(port, function(){
   console.log("---Connected---");
 })
@@ -64,3 +68,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
+app.get('/depart', function(req, res) {
+  var data = req.query.name;
+  console.log(data);
+})
