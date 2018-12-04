@@ -29,30 +29,44 @@ html, body, #Canvas{
 }
 /*Login Page*/
 #LoginPage{
-    background-image: radial-gradient(circle, cyan, violet);
+    /*background-image: radial-gradient(circle, cyan, violet);*/
+    background-image: linear-gradient(135deg, rgba(85,239,203,1) 0%,rgba(30,87,153,1) 0%,rgba(85,239,203,1) 0%,rgba(91,202,255,1) 100%);
     height: 100%;
     text-align: center;
     font-size: 3rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+    font-family: "Microsoft YaHei";
     
 }
 #LoginPage > h1{
-    font-size: 5rem;
+    /*font-size: 5rem;*/
+    font-size: 4rem;
     margin-bottom: 3rem;
+    /*color: #2D7586;*/
+    color: #255e6c;
 }
 .form_container{
     margin:0px auto;
-    text-align: left;
+    /*text-align: left;*/
+    text-align: center;
     width: 50%;
     /* border: 3px solid black; */
 }
 input, select, option{
-    height: 5rem; 
-    width: 300px;
+    height: 4rem; 
+    width: 250px;
     vertical-align: middle;
 }
 #login_button{
-    width: 100px;
+    width: 75px;
+    height: 45px;
+    overflow: hidden;
+    font-size: 30px;
+    border-radius: 3px;
+    background-color: #ECFBFF;
+    border: 2px solid #A6E0EE;
+    color: #2D7586;
+    cursor: pointer;
 }
 /* alert modal*/
 #dia{
@@ -64,4 +78,20 @@ div.ui.approve.button{
     font-weight: bold;
 }
 
+a, #login_button, #name, #department{
+    font-size: 80%;
+    font-family: "Microsoft YaHei";
+}
 
+img{
+    margin-top: 5%;
+    height: 20%;
+}
+
+input, select{
+    background-color: rgb(218, 249, 254);
+}
+
+select{
+    color: #255e6c;
+}
