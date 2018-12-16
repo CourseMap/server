@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+  </head>
+  <body>
+    <p><a href="signin.html">註冊</a>或<a href="loginin.html">登入</a></p>
+    <h1>註冊</h1>
+    <p id="errormsg"></p>
+    <div style="text-align:right;width:22%">
+      <span>username </span><input type="text" name="username" id="username"><br>
+      <span>Department name </span>
+      <select name="dept" id="">
+        <option value="IIM">1</option>
+        <option value="EE">2</option>
+        <option value="CS">3</option>
+      </select><br>
+      <span>email </span><input type="text" name="account" id="account"><br>
+
+      <span>password </span><input type="password" name="password" id="pwd"><br>
+      <button type="submit" id="regist-btn">sign up </button>
+    </div>
+
+    <h1>登入</h1>
+    <div style="text-align:right;width:22%">
+      <span>email </span><input type="text" id="log__em"><br>
+      <span>password </span><input type="password" id="log__pass"><br>
+      <button type="submit" id="login-btn">log in</button>
+    </div>
+
+    <h1>驗證</h1>
+    <div>
+      <button type="button" id="verify-btn">send</button>
+    </div>
+
+    <h1>更改密碼</h1>
+    <div>
+      <input type="text id="chg-pass">
+      <button type="button" id="chgpass-btn">send</button>
+    </div>
+
+    <h1>登出</h1>
+    <div>
+      <button type="button" id="logout-btn">log out</button>
+    </div>
+
+
+
+  </body>
+  <style>
+    #errormsg {
+      font-size: 12px;
+      height: 5px;
+      color: red;
+
+    }
+  </style>
+
+  <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+  <script src="login.js"></script>
+</html>
