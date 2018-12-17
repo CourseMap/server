@@ -2,14 +2,41 @@ html, body, #Canvas{
     height: 100%;
     margin: 0;
 }
+*::-webkit-scrollbar{
+    display: none;
+}
+#information1, #information2{
+    color: #353535;
+}
 /*Main Page*/
+/*My div*/
 #Canvas{
     width: 99%;
-    border: solid 3px black;
+    /* border: solid 3px black; */
     margin: auto;
+    /* background-color:  yellow; */
+}
+/* GOJS diagram */
+canvas {
+    outline: none;
+}
+#PaletteContainer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    width: 100px;
+    height: 100px;
 }
 #MainPage, #Canvas{
     display: none;
+}
+#MainPage{
+    background-color: white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 3;
 }
 .semester_container{
     position: relative;
@@ -36,7 +63,6 @@ html, body, #Canvas{
     font-size: 3rem;
     /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
     font-family: "Microsoft YaHei";
-    
 }
 #LoginPage > h1{
     /*font-size: 5rem;*/
@@ -53,7 +79,7 @@ html, body, #Canvas{
     /* border: 3px solid black; */
 }
 input, select, option{
-    height: 4rem; 
+    height: 4rem;
     width: 250px;
     vertical-align: middle;
 }

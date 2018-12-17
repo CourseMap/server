@@ -8,18 +8,17 @@
     <p><a href="signin.html">註冊</a>或<a href="loginin.html">登入</a></p>
     <h1>註冊</h1>
     <p id="errormsg"></p>
-    <div style="text-align:right;width:22%">
+    <div style="text-align:right;width:22%" id="select_dept">
       <span>username </span><input type="text" name="username" id="username"><br>
-      <span>Department name </span>
-      <select name="dept" id="">
-        <option value="IIM">1</option>
-        <option value="EE">2</option>
-        <option value="CS">3</option>
-      </select><br>
+      <span>Department</span>
+        <select id="dept">
+          <option value="No">----請選擇系所---</option>
+          <option v-for="(depart,index) in departments" id="user__dept">{{depart}}</option>
+        </select><br>
       <span>email </span><input type="text" name="account" id="account"><br>
 
       <span>password </span><input type="password" name="password" id="pwd"><br>
-      <button type="submit" id="regist-btn">sign up </button>
+      <button type="submit" id="regist-btn" @click="">sign up</button>
     </div>
 
     <h1>登入</h1>
@@ -36,7 +35,7 @@
 
     <h1>更改密碼</h1>
     <div>
-      <input type="text id="chg-pass">
+      <input type="text" id="chg-pass">
       <button type="button" id="chgpass-btn">send</button>
     </div>
 
@@ -44,9 +43,6 @@
     <div>
       <button type="button" id="logout-btn">log out</button>
     </div>
-
-
-
   </body>
   <style>
     #errormsg {
@@ -58,5 +54,9 @@
   </style>
 
   <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.js"></script>
   <script src="login.js"></script>
+
+
+  </script>
 </html>
