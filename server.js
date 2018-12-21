@@ -3,11 +3,11 @@ const app = express()
 // const session = require('express-session')
 const fs = require('fs')
 // const https = require('https')
-const port = 3000
+const port = 11121
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-for luffy https
+//for luffy https
 const key = fs.readFileSync('/home/wp2018/ssl/private.key')
 const cert = fs.readFileSync('/home/wp2018/ssl/certificate.crt')
 
@@ -56,11 +56,6 @@ https.createServer(opt, app).listen(port, function(){
 //   res.send("Please log in first.");
 // });
 
-var deptInfo = fs.readFileSync("all_department_with_credit.json");
-
-app.listen(port, function(){
-  console.log("---Connected---");
-})
 
 app.use(express.static(__dirname + '/public'))
 //need this to execute "POST"
