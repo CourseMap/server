@@ -7,18 +7,18 @@ const port = 3000
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-// for luffy https
-// const key = fs.readFileSync('/home/wp2018/ssl/private.key')
-// const cert = fs.readFileSync('/home/wp2018/ssl/certificate.crt')
-//
-// var opt = {
-//   key: key,
-//   cert: cert
-// }
-//
-// https.createServer(opt, app).listen(port, function(){
-//   console.log("---Connected---");
-// })
+for luffy https
+const key = fs.readFileSync('/home/wp2018/ssl/private.key')
+const cert = fs.readFileSync('/home/wp2018/ssl/certificate.crt')
+
+var opt = {
+  key: key,
+  cert: cert
+}
+
+https.createServer(opt, app).listen(port, function(){
+  console.log("---Connected---");
+})
 
 
 
