@@ -3,22 +3,26 @@ const app = express()
 // const session = require('express-session')
 const fs = require('fs')
 // const https = require('https')
-const port = 11121
+const port = 11120
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-//for luffy https
-const key = fs.readFileSync('/home/wp2018/ssl/private.key')
-const cert = fs.readFileSync('/home/wp2018/ssl/certificate.crt')
-
-var opt = {
-  key: key,
-  cert: cert
-}
-
-https.createServer(opt, app).listen(port, function(){
+app.listen(port, function(){
   console.log("---Connected---");
 })
+
+//for luffy https
+// const key = fs.readFileSync('/home/wp2018/ssl/private.key')
+// const cert = fs.readFileSync('/home/wp2018/ssl/certificate.crt')
+//
+// var opt = {
+//   key: key,
+//   cert: cert
+// }
+//
+// https.createServer(opt, app).listen(port, function(){
+//   console.log("---Connected---");
+// })
 
 
 
