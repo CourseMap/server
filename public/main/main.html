@@ -17,7 +17,7 @@
             <div class="form_container">
                 <a>
                     姓名：
-                    <input type="text" id="name" placeholder="User" maxlength="7" autofocus required>
+                    <input type="text" id="name" placeholder="User" maxlength="3" autofocus required>
                 </a>
                 <br><br>
                 <a>
@@ -47,8 +47,53 @@
             </div>
         </div>
         <div id="Canvas"></div>
-        <div id="PaletteContainer">
-            <div id="Palette"></div>
+        <div id="UserAdd">
+                <input type="text" id="InputName" placeholder="課程名稱" maxlength="3" required>
+            <a>
+                <select id="Grade">
+                    <option value="No">請選擇年級</option>
+                    <option value="0">大一上</option>
+                    <option value="1">大一下</option>
+                    <option value="2">大二上</option>
+                    <option value="3">大二下</option>
+                    <option value="4">大三上</option>
+                    <option value="5">大三下</option>
+                    <option value="6">大四上</option>
+                    <option value="7">大四下</option>
+                </select>
+                <select id="Type">
+                    <option value="No" >請選擇課程類別</option>
+                    <option value="0">必修</option>
+                    <option value="1">選修</option>
+                    <option value="2">通識</option>
+                    <option value="3">其他</option>
+                </select>
+                <select id="Credits">
+                    <option value="No">請選擇課程學分</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <select id="Shape">
+                    <option value="No">請選擇節點形狀</option>
+                    <option value="Circle">圓形</option>
+                    <option value="Triangle">三角形</option>
+                    <option value="Rectangle">長方形</option>
+                    <option value="FivePointedStar">星形</option>
+                </select>
+                <select id="Color">
+                    <option value="No">請選擇節點顏色</option>
+                    <option value="blue">藍色</option>
+                    <option value="green">綠色</option>
+                    <option value="purple">紫色</option>
+                    <option value="yellow">黃色</option>
+                </select>
+            </a>
+
+            <button id="AddButton" onclick="AddNode()">新增</button>
         </div>
         <div class="ui modal">
             <div class="content">
