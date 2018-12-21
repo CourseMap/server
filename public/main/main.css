@@ -2,14 +2,39 @@ html, body, #Canvas{
     height: 100%;
     margin: 0;
 }
+*::-webkit-scrollbar{
+    display: none;
+}
+#information1, #information2{
+    color: #353535;
+}
 /*Main Page*/
+/*My div*/
 #Canvas{
     width: 99%;
-    border: solid 3px black;
+    /* border: solid 3px black; */
     margin: auto;
+    /* background-color:  yellow; */
 }
-#MainPage, #Canvas{
+/* GOJS diagram */
+canvas {
+    outline: none;
+}
+#UserAdd{
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    border-top: solid 2px black;
+}
+#MainPage, #Canvas, #UserAdd{
     display: none;
+}
+#MainPage{
+    background-color: white;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 3;
 }
 .semester_container{
     position: relative;
@@ -36,7 +61,6 @@ html, body, #Canvas{
     font-size: 3rem;
     /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
     font-family: "Microsoft YaHei";
-    
 }
 #LoginPage > h1{
     /*font-size: 5rem;*/
@@ -53,7 +77,7 @@ html, body, #Canvas{
     /* border: 3px solid black; */
 }
 input, select, option{
-    height: 4rem; 
+    height: 4rem;
     width: 250px;
     vertical-align: middle;
 }
@@ -82,16 +106,25 @@ a, #login_button, #name, #department{
     font-size: 80%;
     font-family: "Microsoft YaHei";
 }
-
+#name, #department{
+    background-color: rgb(218, 249, 254);
+}
+#department{
+    color: #255e6c;
+}
 img{
     margin-top: 5%;
     height: 20%;
 }
 
-input, select{
-    background-color: rgb(218, 249, 254);
+#InputName, #Grade, #Type, #Credits, #Shape, #Color{
+    font-size: 2rem;
+    margin-left: 10px;
 }
-
-select{
-    color: #255e6c;
+#AddButton{
+    font-size: 2rem;
+    margin-left:30px;
+    vertical-align: middle;
+    height: 4rem;
+    width: 100px;
 }
