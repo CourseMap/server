@@ -22,6 +22,7 @@ let credit2 = 0;
 let total_credit1 = 0;
 let total_credit2 = 0;
 let total = credit1 + credit2;
+let Undokey = 0;
 
 function submit_data(){
     if(select_list.value == "No"){
@@ -342,6 +343,7 @@ function AddNode(){
          $('.ui.modal').modal('show');
         return;
     }
+    --Undokey;
     Canvas.startTransaction("ADD");
     Canvas.model.addNodeData({
         CourseName: InputName.value ,
@@ -351,6 +353,7 @@ function AddNode(){
         Credits: InputCredits.value,
         Shape: InputShape.value,
         Color: InputColor.value,
+        key: Undokey,
     });
     Canvas.commitTransaction("ADD");
     ++CourseNums[InputGrade.value];
@@ -371,6 +374,16 @@ function AddNode(){
     InputCredits.value = "No";
     InputShape.value = "No";
     InputColor.value = "No";
+}
+function UndoAddNode(){
+    if(Undokey == 0)
+        return;
+    console.log(Undokey);
+    node = Canvas.findNodeForKey(Undokey);
+    Canvas.startTransaction("Undo");
+    Canvas.remove(node);
+    Canvas.commitTransaction("Undo");
+    ++Undokey;
 }
 
 var AllData =

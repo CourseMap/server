@@ -118,10 +118,12 @@ img{
 }
 
 #InputName, #Grade, #Type, #Credits, #Shape, #Color{
-    font-size: 2rem;
+    font-size: 200%;
     margin-left: 10px;
+    height: 4rem;
+    width: 12%;
 }
-#AddButton{
+#AddButton, #UndoButton{
     font-size: 2rem;
     margin-left:30px;
     vertical-align: middle;

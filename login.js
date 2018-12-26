@@ -1,7 +1,13 @@
 //initialize
 
-var config = require('./config.js');
-console.log(config);
+var config = {
+  apiKey: "AIzaSyAuvqAuiYCipCn5NO2gSXXLvy50Mmi7jLY",
+  authDomain: "coursemap-e2f9a.firebaseapp.com",
+  databaseURL: "https://coursemap-e2f9a.firebaseio.com",
+  projectId: "coursemap-e2f9a",
+  storageBucket: "coursemap-e2f9a.appspot.com",
+  messagingSenderId: "199405435698"
+};
 
 firebase.initializeApp(config);
 
@@ -84,6 +90,33 @@ var chgpwdbtn
 if(document.getElementById("username").value == 0){
   document.getElementById("regist-btn").disable = true;
 }
+
+
+userLogin = firebase.auth().currentUser;
+firebase.database().ref('users/' + userLogin.uid).set({
+  email: "123@gmail.com",
+  name: "hugecat"
+}).catch(function(error){
+  console.error(error);
+});
+//store personal data
+// var db = firebase.database();
+//
+// ref = db.ref("/");
+// var value = {
+//   b: "234"
+//  // Test1: "t1",
+//  // Test2: "t2",
+//  // Test3: "t3"
+// }
+//
+// ref.set(value);
+
+// var ref = db.ref("/");
+// ref.once("value", function(snapshot) {
+//  console.log(snapshot.val());
+// });
+
 
 
 
