@@ -476,6 +476,31 @@ input, select, textarea {
     background-size: cover;
 }
 
+#banner{
+	background-image: url("images/landing.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#banner .inner .image{
+	position: relative;
+	margin-left: 0%;
+}
+
+.buttons{
+	position: absolute;
+	margin-top: -15%;
+	padding-left: 40%;
+}
+
+.buttons img{
+	width: 300px;
+}
+
+a{
+	text-decoration: none;
+}
 
 /* Row */
 
@@ -967,6 +992,10 @@ input, select, textarea {
 
 		@media screen and (max-width: 1280px) {
 
+			.buttons{
+				margin-top: -23%;
+			}
+
 			.row {
 				display: flex;
 				flex-wrap: wrap;
@@ -1211,6 +1240,15 @@ input, select, textarea {
 		}
 
 		@media screen and (max-width: 980px) {
+			.buttons img{
+				width: 240px;
+			}
+
+			.buttons{
+				padding-left: 48%;
+			}
+
+
 			.container{
 				    /*height: 580px;*/
 				    /*margin: 7.6vh;*/
@@ -1732,6 +1770,9 @@ input, select, textarea {
 
 		/*@media screen and (max-width: 480px) {*/
 		@media screen and (max-width: 568px) {
+			.buttons img{
+				width: 110px;
+			}
 
 			.container{
     				padding: 3% 3% 3% 3%;
@@ -3599,10 +3640,10 @@ input, select, textarea {
 				padding: 5em 0 8.25em 170px;
 				background-color: #2e3141;
 				/*background-color: #E8FFFF;*/
-				background-image: linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)), url("../../images/bg.jpg");
+				/*background-image: linear-gradient(to top, rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)), url("../../images/bg.jpg");*/
 				/*background-image: linear-gradient(to top, #E8FFFF, #E8FFFF), url("../../images/bg.jpg");*/
-				background-size: auto, cover;
-				background-position: center, center;
+/*				background-size: auto, cover;
+				background-position: center, center;*/
 				margin-bottom: -6.5em;
 			}
 
