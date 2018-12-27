@@ -30,7 +30,7 @@ registerSmtBtn.addEventListener("click", function(){
     firebase.database().ref('users/' + loginUser.uid).set({
       username: document.getElementById("username").value,
       email: loginUser.email,
-      department: 
+
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
@@ -106,6 +106,23 @@ var chgpwdbtn
 if(document.getElementById("username").value == 0){
   document.getElementById("regist-btn").disable = true;
 }
+
+var depart_list = new Vue ({
+  el: '#select_dept',
+  data: {
+    departments: ["中文系 CL", "外文系 FLL", "歷史系 HIS", "台文系 TWL", "數學系 MATH", "物理系 PHYS", "化學系 CHEM", "地科系 EARS", "光電系 DPS", "機械系 ME", "化工系 CHE", "資源系 RE", "材料系 MSE", "土木系 CE", "水利系 HOE", "工科系 ES", "能源學程 IBPE", "系統系 SNME", "都計系 UP", "航太系 AA", "環工系 EV", "測量系 GM", "醫工系 BME", "會計系 ACC", "統計系 STAT", "工資系 IIM", "企管系 BA", "交管系 TCM", "護理系 NURS", "醫技系 MLSB", "醫學系 MED", "物治系 PT", "職治系 OT", "藥學系 DOPA", "法律系 LAW", "政治系 PS", "經濟系 ECON", "心理系 PSY", "電機系 EE", "資訊系 CSIE", "建築系 ARCH", "工設系 ID", "生科系 LS", "生技系 BBS"],
+    choosed_dept:[]
+},
+  methods: {
+    // deptvalue: function(){
+    //   var test = document.getElementById("dept").value;
+    //   console.log(test);
+    //   var name = document.getElementById("username").value;
+    //   console.log(name);
+    // }
+  }
+});
+
 
 //input data
 // var key = firebase.database().ref('users/').push({
