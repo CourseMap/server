@@ -17,13 +17,28 @@ var pwd = document.getElementById("pwd");
 var registerSmtBtn = document.getElementById("regist-btn");
 registerSmtBtn.addEventListener("click", function(){
         console.log(account.value);
-    firebase.auth().createUserWithEmailAndPassword(account.value, pwd.value).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMsg = error.message;
-    console.log(errorMsg);
-    document.getElementById("errormsg").innerHTML = errorMsg;
-  });
+  //   firebase.auth().createUserWithEmailAndPassword(account.value, pwd.value).catch(function(error) {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMsg = error.message;
+  //   console.log(errorMsg);
+  //   document.getElementById("errormsg").innerHTML = errorMsg;
+  // });
+  firebase.auth().createUserWithEmailAndPassword(account.value, pwd.value).then(function() {
+    var loginUser = firebase.auth().currentUser;
+    console.log("log in as :", loginUser);
+    firebase.database().ref('users/' + loginUser.uid).set({
+      username: document.getElementById("username").value,
+      email: loginUser.email,
+      department: 
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMsg = error.message;
+      console.log(errorMsg);
+      document.getElementById("errormsg").innerHTML = errorMsg;
+    });
+  })
 },false);
 
 
@@ -34,6 +49,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     userLogin = user;
     document.getElementById("errormsg").innerHTML = "Welcome!";
     console.log("Hi!");
+    console.log(userLogin.uid);
   } else {
     userLogin = null;
     document.getElementById("errormsg").innerHTML = "Please sign in first.";
@@ -91,14 +107,14 @@ if(document.getElementById("username").value == 0){
   document.getElementById("regist-btn").disable = true;
 }
 
+//input data
+// var key = firebase.database().ref('users/').push({
+//             username: name,
+//           }).key;
+//
+// console.log("Push key = "+ key );
 
-userLogin = firebase.auth().currentUser;
-firebase.database().ref('users/' + userLogin.uid).set({
-  email: "123@gmail.com",
-  name: "hugecat"
-}).catch(function(error){
-  console.error(error);
-});
+
 //store personal data
 // var db = firebase.database();
 //
