@@ -2,27 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
     <title>Test</title>
   </head>
   <body>
+    <div class="ui modal" data-keyboard="false" data-backdrop="static" id="login__modal">
+      <div class="header">註冊/登入</div>
+      <div class="content">
+        <p id="errormsg"></p>
+        <div style="text-align:left;width:30%" id="select_dept">
+          <p><span>email </span><input type="text" name="account" id="account"></p>
+          <p><span>username </span><input type="text" name="username" id="username"></p>
+          <p><span>Department</span>
+            <select name="dept" id="sel__dept">
+              <option value="No">----請選擇系所---</option>
+              <option v-for="(depart,index) in departments">{{depart}}</option>
+            </select></p>
+          <p><span>password </span><input type="password" name="password" id="pwd"></p>
+          <button type="submit" id="regist-btn" @click="choose_depart()" class="ui positive icon button">註冊</button>
+        </div>
+        <!-- <div style="">
+          <p><span>email </span><br><input type="text" id="log__em"></p>
+          <p><span>password </span><br><input type="password" id="log__pass"></p>
+          <button type="submit" id="login-btn" class="ui positive right labeled icon button">登入</button>
+        </div> -->
+      </div>
+    </div>
     <p><a href="signin.html">註冊</a>或<a href="loginin.html">登入</a></p>
     <h1>註冊</h1>
-    <p id="errormsg"></p>
-    <div style="text-align:right;width:22%" id="select_dept">
-      <span>username </span><input type="text" name="username" id="username"><br>
-      <span>Department</span>
-        <select name="dept">
-          <option value="No">----請選擇系所---</option>
-          <option v-for="(depart,index) in departments" value="1">{{depart}}</option>
-        </select><br>
-      <span>email </span><input type="text" name="account" id="account"><br>
 
-      <span>password </span><input type="password" name="password" id="pwd"><br>
-      <button type="submit" id="regist-btn">sign up</button>
-    </div>
+
 
     <h1>登入</h1>
-    <div style="text-align:right;width:22%">
+    <div style="text-align:left;width:22%">
       <span>email </span><input type="text" id="log__em"><br>
       <span>password </span><input type="password" id="log__pass"><br>
       <button type="submit" id="login-btn">log in</button>
@@ -49,11 +61,16 @@
       font-size: 12px;
       height: 5px;
       color: red;
+    }
 
+    .ui.modal {
+      width: 40%;
     }
   </style>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.js"></script>
   <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
   <script src="login.js"></script>
 
 

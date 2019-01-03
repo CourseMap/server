@@ -11,7 +11,30 @@
 
     </head>
     <body>
-        <div id="LoginPage">
+      <div class="ui modal" data-keyboard="false" data-backdrop="static" id="login__modal">
+        <div class="header">註冊/登入</div>
+        <div class="content">
+          <p id="errormsg"></p>
+          <img src="./picture/login_logo.png">
+          <div style="text-align:left;width:30%" id="select_dept">
+            <p><span>email </span><input type="text" name="account" id="account"></p>
+            <p><span>username </span><input type="text" name="username" id="username"></p>
+            <p><span>Department</span>
+              <select name="dept" id="sel__dept">
+                <option value="No">----請選擇系所---</option>
+                <option v-for="(depart,index) in departments">{{depart}}</option>
+              </select></p>
+            <p><span>password </span><input type="password" name="password" id="pwd"></p>
+            <button type="submit" id="regist-btn" @click="" class="ui positive icon button" onclick="getmap()">註冊</button>
+          </div>
+          <!-- <div style="">
+            <p><span>email </span><br><input type="text" id="log__em"></p>
+            <p><span>password </span><br><input type="password" id="log__pass"></p>
+            <button type="submit" id="login-btn" class="ui positive right labeled icon button">登入</button>
+          </div> -->
+        </div>
+      </div>
+        <!-- <div id="LoginPage">
             <img src="./picture/login_logo.png">
             <h1>Welcome</h1>
             <div class="form_container">
@@ -31,7 +54,7 @@
                     <input id="login_button" type="submit" value="登入" onclick="submit_data()">
                 </a>
             </div>
-        </div>
+        </div> -->
         <div id="MainPage">
             <h1 id="information1">Information1</h1>
             <h1 id="information2">Information2</h1>
@@ -48,11 +71,10 @@
         </div>
         <div id="Canvas"></div>
         <div id="UserAdd">
-<<<<<<< HEAD
+            <h1 id="InputTitle">
+                使用者專區
+            </h1>
                 <input type="text" id="InputName" placeholder="課程名稱" maxlength="15" required>
-=======
-                <input type="text" id="InputName" placeholder="課程名稱" maxlength="3" required>
->>>>>>> authtest
             <a>
                 <select id="Grade">
                     <option value="No">請選擇年級</option>
@@ -96,13 +118,9 @@
                     <option value="yellow">黃色</option>
                 </select>
             </a>
-<<<<<<< HEAD
             <button id="AddButton" onclick="AddNode()">新增</button>
             <button id="UndoButton" onclick="UndoAddNode()">復原</button>
-=======
-
-            <button id="AddButton" onclick="AddNode()">新增</button>
->>>>>>> authtest
+            <button id="SaveButton" onclick="SaveNode()">儲存</button>
         </div>
         <div class="ui modal">
             <div class="content">
@@ -112,6 +130,9 @@
                 <div class="ui approve button">Ok!</div>
             </div>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
         <script src="./main.js"></script>
     </body>
 </html>

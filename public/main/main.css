@@ -1,3 +1,7 @@
+.content > img {
+  width: 20%;
+}
+
 html, body, #Canvas{
     height: 100%;
     margin: 0;
@@ -8,6 +12,7 @@ html, body, #Canvas{
 #information1, #information2{
     color: #353535;
 }
+
 /*Main Page*/
 /*My div*/
 #Canvas{
@@ -27,7 +32,7 @@ canvas {
     border-top: solid 2px black;
 }
 #MainPage, #Canvas, #UserAdd{
-    display: none;
+    /* display: none; */
 }
 #MainPage{
     background-color: white;
@@ -55,7 +60,7 @@ canvas {
 /*Login Page*/
 #LoginPage{
     /*background-image: radial-gradient(circle, cyan, violet);*/
-    background-image: linear-gradient(135deg, rgba(85,239,203,1) 0%,rgba(30,87,153,1) 0%,rgba(85,239,203,1) 0%,rgba(91,202,255,1) 100%);
+    /* background-image: linear-gradient(135deg, rgba(85,239,203,1) 0%,rgba(30,87,153,1) 0%,rgba(85,239,203,1) 0%,rgba(91,202,255,1) 100%); */
     height: 100%;
     text-align: center;
     font-size: 3rem;
@@ -67,7 +72,7 @@ canvas {
     font-size: 4rem;
     margin-bottom: 3rem;
     /*color: #2D7586;*/
-    color: #255e6c;
+    /* color: #255e6c; */
 }
 .form_container{
     margin:0px auto;
@@ -77,9 +82,9 @@ canvas {
     /* border: 3px solid black; */
 }
 input, select, option{
-    height: 4rem;
+    height: 2rem;
     width: 250px;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 #login_button{
     width: 75px;
@@ -123,10 +128,13 @@ img{
     height: 4rem;
     width: 12%;
 }
-#AddButton, #UndoButton{
+#AddButton, #UndoButton, #SaveButton{
     font-size: 2rem;
     margin-left:30px;
     vertical-align: middle;
     height: 4rem;
-    width: 100px;
+    width: 5%;
+}
+#InputTitle{
+    text-align: center;
 }
