@@ -60,6 +60,11 @@ document.addEventListener("input", function(){
   }
 }, false);
 
+if(document.getElementById("log__em").value.length == 0 || document.getElementById("log__pass").value.length==0){
+  document.getElementById("login-btn").disabled = true;
+} else {
+  document.getElementById("login-btn").disabled = false;
+}
 
 
 registerSmtBtn.addEventListener("click", function(){

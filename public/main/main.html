@@ -12,11 +12,12 @@
     </head>
     <body>
       <div class="ui modal" data-keyboard="false" data-backdrop="static" id="login__modal">
-        <div class="header">註冊/登入</div>
+        <div class="header">註冊或<a href="">登入</a></div>
         <div class="content">
           <p id="errormsg"></p>
           <img src="./picture/login_logo.png">
           <div style="text-align:left;width:30%" id="select_dept">
+            <p id="errormsg"></p>
             <p><span>email </span><input type="text" name="account" id="account"></p>
             <p><span>username </span><input type="text" name="username" id="username"></p>
             <p><span>Department</span>
@@ -27,11 +28,13 @@
             <p><span>password </span><input type="password" name="password" id="pwd"></p>
             <button type="submit" id="regist-btn" @click="" class="ui positive icon button" onclick="getmap()">註冊</button>
           </div>
-          <!-- <div style="">
+          <div style="">
             <p><span>email </span><br><input type="text" id="log__em"></p>
             <p><span>password </span><br><input type="password" id="log__pass"></p>
             <button type="submit" id="login-btn" class="ui positive right labeled icon button">登入</button>
-          </div> -->
+          </div>
+          <div>
+          </div>
         </div>
       </div>
         <!-- <div id="LoginPage">
@@ -56,6 +59,7 @@
             </div>
         </div> -->
         <div id="MainPage">
+            <button type="button" class="ui positive right labeled icon button" id="logout-btn">登出</button>
             <h1 id="information1">Information1</h1>
             <h1 id="information2">Information2</h1>
             <div class="semester_container">
