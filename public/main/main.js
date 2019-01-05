@@ -117,6 +117,15 @@ if(loginBtn){
           // console.log(passIndex(departIndex));
           console.log(depart_list.departments[departIndex-1]);
         }).then(function(){
+          firebase.database().ref('/users/'+loginUser.uid+'/coursenumdata/arr').once('value').then(function(snapshot){
+            var coursenumdata = snapshot.val();
+            CourseNums = coursenumdata;
+          });
+          firebase.database().ref('/users/'+loginUser.uid+'/linkdata/arr').once('value').then(function(snapshot){
+            var linkdata = snapshot.val();
+            LinkArray = linkdata;
+            console.log(LinkArray);
+          });
           firebase.database().ref('/users/'+loginUser.uid+'/nodedata/arr').once('value').then(function(snapshot) {
             var Coursename = snapshot.val();
             data_json = Coursename;
@@ -160,20 +169,7 @@ let department_data = ["中文系 CL", "外文系 FLL", "歷史系 HIS", "台文
 //     // console.log(index);
 //     // console.log(select_list.option[index].value);
 // });
-let Canvas
-let row_width = innerWidth/8;
-let col_width = 150;
-let CourseNums = [];
-let DataArray = [];
-let LinkArray = [];
-let Undokey = 0;
-const objGo = go.GraphObject.make;
-const information2 = document.getElementById("information2");
-let credit1 = 0;
-let credit2 = 0;
-let total_credit1 = 0;
-let total_credit2 = 0;
-let total = credit1 + credit2;
+
 
 
 // function submit_data(){
@@ -191,7 +187,20 @@ let total = credit1 + credit2;
 //     console.log(select_list.value);
 //     generateMap();
 // }
-
+let Canvas;
+let row_width = innerWidth/8;
+let col_width = 150;
+let CourseNums = [];
+let DataArray = [];
+let LinkArray = [];
+let Undokey = 0;
+const objGo = go.GraphObject.make;
+const information2 = document.getElementById("information2");
+let credit1 = 0;
+let credit2 = 0;
+let total_credit1 = 0;
+let total_credit2 = 0;
+let total = credit1 + credit2;
 function printthemap(data_json){
   console.log(data_json);
   credit1 = 0;
@@ -633,14 +642,14 @@ function getmap() {
 function click_node(e, node){ // change color when clicking node
     let shape = node.findObject("SHAPE");
     if(!node.data.IsClicked){
-        if(node.data.LinkFrom.length != 0){
+        if(node.data.LinkFrom != undefined && node.data.LinkFrom.length != 0){
             // console.log(node.data.LinkFrom);
             let len= node.data.LinkFrom.length;
             for(let i=0; i<len; ++i){
                 if(!DataArray[node.data.LinkFrom[i]].IsClicked){
                     let dia = `${DataArray[node.data.LinkFrom[i]].CourseName} is not selected !!!`;
                     document.getElementById("dia").innerHTML = dia;
-                    $('.ui.modal').modal('show');
+                    $('.ui.modal#alert_modal').modal('show');
                     return;
                 }
             }
@@ -648,10 +657,12 @@ function click_node(e, node){ // change color when clicking node
         node.data.IsClicked = true;
         if(node.data.CreditType == 0){
             shape.fill = "green";
+            node.data.Color = "green";
             credit1 += node.data.Credits;
         }
         else{
             shape.fill = "blue";
+            node.data.Color = "blue";
             credit2 += node.data.Credits;
         }
     }
@@ -659,6 +670,7 @@ function click_node(e, node){ // change color when clicking node
         Clear_Click(node);
         node.data.IsClicked = false;
         shape.fill = "lightblue";
+        node.data.Color = "lightblue";
         if(node.data.CreditType == 0)
             credit1 -= node.data.Credits;
         else
@@ -764,28 +776,114 @@ function SaveNode(){
     console.log(Canvas.model.nodeDataArray);
     var loginUser = firebase.auth().currentUser;
     console.log(loginUser.uid);
-    var nodeid = 0;
     var nodedata = firebase.database().ref('/users/' + loginUser.uid + '/nodedata');
+    var linkdata = firebase.database().ref('/users/' + loginUser.uid + '/linkdata');
+    var coursenumdata = firebase.database().ref('/users/' + loginUser.uid + '/coursenumdata');
     var nodearray = [];
+    var linkarray = [];
 
     for(var i =0;i<Canvas.model.nodeDataArray.length;i++){
-      nodearray.push({
-        CourseName: Canvas.model.nodeDataArray[i].CourseName,
-        loc: Canvas.model.nodeDataArray[i].loc,
-        IsClicked: Canvas.model.nodeDataArray[i].IsClicked,
-        CreditType: Canvas.model.nodeDataArray[i].CreditType,
-        Credits: Canvas.model.nodeDataArray[i].Credits,
-        Shape: Canvas.model.nodeDataArray[i].Shape,
-        Color: Canvas.model.nodeDataArray[i].Color,
-        key: Canvas.model.nodeDataArray[i].key
-      });
-       nodeid += 1;
+        let data_obj = {};
+        Object.defineProperties(data_obj, {
+            "key": {
+                value: Canvas.model.nodeDataArray[i].key,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "CourseName": {
+                value: Canvas.model.nodeDataArray[i].CourseName,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "loc": {
+                value: Canvas.model.nodeDataArray[i].loc,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "IsClicked": {
+                value: Canvas.model.nodeDataArray[i].IsClicked,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "LinkFrom" : {
+                value: Canvas.model.nodeDataArray[i].LinkFrom,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "LinkTo" : {
+                value: Canvas.model.nodeDataArray[i].LinkTo,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "CreditType" : {
+                value: Canvas.model.nodeDataArray[i].CreditType,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "Credits" : {
+                value: Canvas.model.nodeDataArray[i].Credits,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "Shape" : {
+                value: Canvas.model.nodeDataArray[i].Shape,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "Color" : {
+                value: Canvas.model.nodeDataArray[i].Color,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+            "Time" : {
+                value: Canvas.model.nodeDataArray[i].Time,
+                writable: true,
+                configurable: true,
+                enumerable: true,
+            },
+        });
+        nodearray.push(data_obj);
+    //   nodearray.push({
+    //     CourseName: Canvas.model.nodeDataArray[i].CourseName,
+    //     loc: Canvas.model.nodeDataArray[i].loc,
+    //     IsClicked: Canvas.model.nodeDataArray[i].IsClicked,
+    //     CreditType: Canvas.model.nodeDataArray[i].CreditType,
+    //     Credits: Canvas.model.nodeDataArray[i].Credits,
+    //     Shape: Canvas.model.nodeDataArray[i].Shape,
+    //     Color: Canvas.model.nodeDataArray[i].Color,
+    //     key: Canvas.model.nodeDataArray[i].key,
+    //     LinkFrom: Canvas.model.nodeDataArray[i].LinkFrom,
+    //     LinkTo: Canvas.model.nodeDataArray[i].LinkTo,
+    //   });
+    }
+    for(var i =0;i<Canvas.model.linkDataArray.length;i++){
+        linkarray.push({
+          from: Canvas.model.linkDataArray[i].from,
+          to: Canvas.model.linkDataArray[i].to,
+        });
     }
 
     nodedata.set({
-      arr: nodearray,
+        arr: nodearray,
     });
-
+    linkdata.set({
+        arr: linkarray,
+    });
+    coursenumdata.set({
+      arr: CourseNums,
+    });
+    console.log(nodearray);
+    console.log(linkarray);
     // .then(function(){
     //   console.log(Canvas.model.nodeDataArray.length);
     //   console.log("successfully added");
