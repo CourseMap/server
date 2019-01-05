@@ -1,24 +1,13 @@
-
-$("#login__modal").modal('show');
-
-$("#logout-btn").click(function(){
-  $("#login__modal").modal('show');
-});
-
 var depart_list = new Vue ({
   el: '#select_dept',
   data: {
     departments: ["中文系 CL", "外文系 FLL", "歷史系 HIS", "台文系 TWL", "數學系 MATH", "物理系 PHYS", "化學系 CHEM", "地科系 EARS", "光電系 DPS", "機械系 ME", "化工系 CHE", "資源系 RE", "材料系 MSE", "土木系 CE", "水利系 HOE", "工科系 ES", "能源學程 IBPE", "系統系 SNME", "都計系 UP", "航太系 AA", "環工系 EV", "測量系 GM", "醫工系 BME", "會計系 ACC", "統計系 STAT", "工資系 IIM", "企管系 BA", "交管系 TCM", "護理系 NURS", "醫技系 MLSB", "醫學系 MED", "物治系 PT", "職治系 OT", "藥學系 DOPA", "法律系 LAW", "政治系 PS", "經濟系 ECON", "心理系 PSY", "電機系 EE", "資訊系 CSIE", "建築系 ARCH", "工設系 ID", "生科系 LS", "生技系 BBS"],
 },
   methods: {
-    choose_depart: function() {
-      console.log(document.getElementById("sel__dept").selectedIndex +" "+ document.getElementById("sel__dept").value);
-    }
   }
 
 });
 
-var departIndex;
 var select_list = document.getElementById("sel__dept");
 
 var config = {
@@ -36,6 +25,9 @@ firebase.initializeApp(config);
 var account = document.getElementById("account");
 var pwd = document.getElementById("pwd");
 var registerSmtBtn = document.getElementById("regist-btn");
+
+$("#login__modal").modal('setting', 'closable', false).modal('show');
+
 
 //button disabled or enabled
 document.getElementById("regist-btn").disabled = true;
@@ -76,13 +68,10 @@ registerSmtBtn.addEventListener("click", function(){
       departName: document.getElementById("sel__dept").value,
       departID: document.getElementById("sel__dept").selectedIndex,
     })
-    // return departIndex;
+
   });
 
 }, false);
-
-
-
 
 //login status
 var userLogin;
@@ -90,9 +79,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if(user) {
     userLogin = user;
     $('#login__modal').modal('hide');
-    document.getElementById("errormsg").innerHTML = "Welcome!";
     console.log("Hi!");
-    // console.log(userLogin.uid);
   } else {
     userLogin = null;
     document.getElementById("errormsg").innerHTML = "Please sign in first.";
@@ -101,28 +88,40 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
+
+var departIndex;
 //log in
 var logEmail = document.getElementById("log__em");
 var logPwd = document.getElementById("log__pass");
 var loginBtn = document.getElementById("login-btn");
+
 if(loginBtn){
   loginBtn.addEventListener("click", function() {
     console.log(logEmail.value);
     //login auth
     firebase.auth().signInWithEmailAndPassword(logEmail.value, logPwd.value).catch(function(err) {
-      var errorCode = error.code;
-      var errorMsg = error.message;
+      var errorCode = err.code;
+      var errorMsg = err.message;
+      document.getElementById("errormsg").innerHTML = errorMsg;
       console.log(errorMsg);
     }).then(function(){
       //get user data
       var loginUser = firebase.auth().currentUser;
       firebase.database().ref('/users/' + loginUser.uid).once('value').then(function(snapshot) {
           departIndex = snapshot.val().departID;
-          // console.log(depart_list.departments[departIndex]);
-        });
+          // console.log(passIndex(departIndex));
+          console.log(depart_list.departments[departIndex-1]);
+        }).then(function getmap() {
+            // console.log(depart_list.departments[departIndex-1]);
+            generateMap();
+          });
     });
   }, false);
 }
+
+
+
+
 
 //log out
 var logoutBtn = document.getElementById("logout-btn");
@@ -136,23 +135,6 @@ if(logoutBtn) {
   }, false);
 }
 
-//verify email
-userLogin = firebase.auth().currentUser;
-var verifyBtn = document.getElementById("verify-btn");
-if(verifyBtn){
-  verifyBtn.addEventListener("click", function() {
-    userLogin.sendEmailVerification().then(function() {
-      console.log("sent!");
-    }, function(error) {
-      console.log.error("error!");
-    });
-  }, false);
-
-}
-
-//change password
-var chgpwd = document.getElementById("chg-pass");
-var chgpwdbtn;
 //new code above----------------------------
 
 // let department_data = depart_list.departments;
@@ -200,12 +182,13 @@ let Undokey = 0;
 // }
 
 function generateMap(){
+    console.log(department_data[departIndex-1]);
 const name = document.getElementById("username");
 if(name.value == "")
     name.value = "User";
 //select_list1
-document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[select_list.selectedIndex-1]})`;
-// document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[departIndex]})`;
+document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[departIndex-1]})`;
+// document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[passIndex(departIndex)]})`;
 // set semester title
 for(let i=1; i<=8; ++i){
     let sem = document.getElementById("sem" + i);
@@ -218,8 +201,8 @@ for(let i=1; i<=8; ++i){
 }
 
 //select_list2
-const key = Object.keys(AllData)[select_list.selectedIndex-1];
-// const key = Object.keys(AllData)[departIndex];
+const key = Object.keys(AllData)[departIndex-1];
+// const key = Object.keys(AllData)[passIndex(departIndex)];
 const data_json = AllData[key];
 console.log(data_json);
 // const key = Object.keys(AllData)[24];
@@ -402,10 +385,9 @@ Canvas.model = Diagram; // build Diagram
 }
 
 
-generateMap();
-
-function getmap(){
-  $("#login__modal").modal('hide');
+function getmap() {
+  console.log(depart_list.departments[departIndex-1]);
+  generateMap();
 };
 
 function click_node(e, node){ // change color when clicking node

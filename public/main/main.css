@@ -13,6 +13,12 @@ html, body, #Canvas{
     color: #353535;
 }
 
+#logout-btn {
+  display: inline-block;
+  position: absolute;
+  float:right;
+}
+
 /*Main Page*/
 /*My div*/
 #Canvas{
@@ -21,6 +27,8 @@ html, body, #Canvas{
     margin: auto;
     /* background-color:  yellow; */
 }
+
+
 /* GOJS diagram */
 canvas {
     outline: none;
