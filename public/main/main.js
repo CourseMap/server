@@ -117,7 +117,7 @@ if(loginBtn){
           // console.log(passIndex(departIndex));
           console.log(depart_list.departments[departIndex-1]);
         }).then(function getmap() {
-            generateMap();
+            getdbmap();
           });
     });
   }, false);
@@ -187,6 +187,223 @@ let total = credit1 + credit2;
 //     console.log(select_list.value);
 //     generateMap();
 // }
+
+function getdbmap(){
+  credit1 = 0;
+  credit2 = 0;
+  total_credit1 = 0;
+  total_credit2 = 0;
+  total = credit1 + credit2;
+  row_width = innerWidth/8;
+  col_width = 150;
+  CourseNums = [];
+  DataArray = [];
+  LinkArray = [];
+  Undokey = 0;
+  var data_json;
+
+  const name = document.getElementById("username");
+  if(name.value == "")
+      name.value = "User";
+  //select_list1
+  document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[departIndex-1]})`;
+
+  for(let i=1; i<=8; ++i){
+      let sem = document.getElementById("sem" + i);
+      let path = "./picture/sem" + i + ".png";
+      sem.style.backgroundImage = `url(${path})`;
+      let loc = row_width*(i-1) + 35;
+      // console.log(row_width);
+      // console.log(loc);
+      sem.style.left = `${loc}px`;
+  }
+
+  var loginUser = firebase.auth().currentUser;
+  firebase.database().ref('/users/'+loginUser.uid+'/nodedata/arr').once('value').then(function(snapshot) {
+    var Coursename = snapshot.val();
+    data_json = Coursename;
+    console.log(Coursename);
+
+  }).then(
+    function(){
+    let index = 0;
+    // console.log(screen);
+    for(let i=0; i<8; ++i){
+        let j = 0;
+        data_json[i].forEach(element => {
+            let loc = "";
+            loc = loc + row_width*i+ " " + col_width*j;
+            let data_obj = {};
+            Object.defineProperties(data_obj, {
+                "key": {
+                    value: index,
+                },
+                "CourseName": {
+                    value: element,
+                },
+                "loc": {
+                    value: loc,
+                },
+                "IsClicked": {
+                    value: false,
+                    writable: true,
+                },
+                "LinkFrom" : {
+                    value: [],
+                    writable: true,
+                },
+                "LinkTo" : {
+                    value: [],
+                    writable: true,
+                },
+                "CreditType" : {
+                    value: 0,
+                    writable: true,
+                },
+                "Credits" : {
+                    value: 0,
+                    writable: true,
+                },
+                "Shape" : {
+                    value: "",
+                    writable: true,
+                },
+                "Color" : {
+                    value: "lightblue",
+                    writable: true,
+                }
+            });
+            DataArray.push(data_obj);
+            ++index;
+            ++j;
+        });
+        CourseNums[i] = j;
+    }
+    // console.log(CourseNums);
+    console.log(index);
+    // Read relation data to node
+
+    data_json[8].forEach(element1 => {
+        let index = 0;
+        element1.forEach(element2 => {
+            if(element2 == 1){
+                let link_obj = {};
+                Object.defineProperties(link_obj, {
+                    "from": {
+                        value: index // column index
+                    },
+                    "to": {
+                        value: data_json[8].indexOf(element1) // row index
+                    }
+                });
+                LinkArray.push(link_obj);
+                // console.log(index);
+                DataArray[data_json[8].indexOf(element1)].LinkFrom.push(index);
+                DataArray[index].LinkTo.push(data_json[8].indexOf(element1));
+
+            }
+            ++index;
+        });
+    });
+    console.log(index);
+    // console.log(LinkArray);
+    for(let i=0; i<index; ++i){
+        if(data_json[9][i] == 0){
+            DataArray[i].CreditType = 0;
+            DataArray[i].Shape = "Circle";
+            total_credit1 += data_json[10][i];
+        }
+        else{
+            DataArray[i].CreditType = 1;
+            DataArray[i].Shape = "Triangle";
+            total_credit2 += data_json[10][i];
+        }
+        DataArray[i].Credits = data_json[10][i];
+    }
+    information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
+    console.log(DataArray);
+
+    // Create and Initialize canvas
+    Canvas = objGo(go.Diagram, "Canvas",
+    {
+        "undoManager.isEnabled": true, // Ctrl+Z or Ctrl+Y
+        "commandHandler.copiesTree": true, // Ctrl+C or Ctrl+V
+        "commandHandler.deletesTree": true, // Delete
+        initialContentAlignment: go.Spot.Left,
+        allowZoom: false, // Not to scale
+
+    });
+    Canvas.isReadOnly = true;
+    Canvas.allowHorizontalScroll = false;
+    // Canvas.allowVerticalScroll = false;
+    Canvas.allowSelect = false;
+    Canvas.allowDrop = true;
+
+    // Set Node Skin
+    Canvas.nodeTemplate = objGo(go.Node, "Vertical",
+        new go.Binding("location", "loc", go.Point.parse),
+
+        objGo(go.Shape,
+        {
+            name: "SHAPE",
+            width: 30,
+            height: 30,
+            fill: "lightblue",
+            strokeWidth: 0,
+        },
+        new go.Binding("fill", "Color"),
+        new go.Binding("figure", "Shape")),
+        objGo(go.TextBlock, "default text",
+        {
+            width: 120,
+            margin: 10,
+            stroke: "#353535",
+            font: "bold 20px sans-serif",
+            textAlign: "center",
+        },
+        new go.Binding("text", "CourseName")),
+        {
+            cursor: "pointer",
+            fromSpot: go.Spot.Right, // right out left in
+            toSpot: go.Spot.Left,
+            click: click_node,
+            mouseEnter: mouseEnter_node,
+            mouseLeave: mouseLeave_node,
+            // toolTip:
+
+        },
+    );
+    // Set Link Skin
+    Canvas.linkTemplate = objGo(go.Link,
+        objGo(go.Shape,
+        {
+            name: "SHAPE",
+            strokeWidth: 5,
+            stroke : "#CCCCCC",
+            mouseEnter: mouseEnter_link,
+            mouseLeave: mouseLeave_link,
+        }),
+        objGo(go.Shape,   // the arrowhead
+        {
+            toArrow: "Triangle",
+        }),
+        {
+            routing: go.Link.AvoidsNodes, // Link path
+            corner: 5, // rounded corners
+            curve: go.Link.JumpGap,
+            // curve: go.Link.JumpOver,
+        });
+    // Create and Initialize model
+    let Diagram = objGo(go.GraphLinksModel); // Create model
+    Diagram.nodeDataArray = DataArray;// Create element
+    Diagram.linkDataArray = LinkArray;// Create link
+    Canvas.model = Diagram; // build Diagram
+  });
+
+
+
+
+};
 
 function generateMap(){
 credit1 = 0;
