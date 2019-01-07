@@ -81,44 +81,30 @@
             <h1 id="InputTitle">
                 使用者專區
             </h1>
-                <input type="text" id="InputName" placeholder="課程名稱" maxlength="15" required>
             <a>
-                <select id="Grade">
-                    <option value="No">請選擇年級</option>
-                    <option value="0">大一上</option>
-                    <option value="1">大一下</option>
-                    <option value="2">大二上</option>
-                    <option value="3">大二下</option>
-                    <option value="4">大三上</option>
-                    <option value="5">大三下</option>
-                    <option value="6">大四上</option>
-                    <option value="7">大四下</option>
+                <select id="AddDept">
+                  <option name="choosedept" value="No">選擇系所</option>
+                  <option v-for="(dept, index) in dept_data">{{dept}}</option>
                 </select>
-                <select id="Type">
-                    <option value="No" >請選擇課程類別</option>
+                <select id="CourseType">
+                    <option value="No" >選擇課程類別</option>
                     <option value="0">必修</option>
                     <option value="1">選修</option>
-                    <option value="2">通識</option>
-                    <option value="3">其他</option>
                 </select>
-                <select id="Credits">
-                    <option value="No">請選擇課程學分</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                <!-- <input type="text" id="InputName" placeholder="課程名稱" maxlength="15" required> -->
+                <select id="CourseName">
+                    <option value="No">選擇課程名稱</option>
+                    <option v-for="(course, index) in cfilter_data">{{course}}</option>
                 </select>
                 <select id="Shape">
-                    <option value="No">請選擇節點形狀</option>
+                    <option value="No">選擇節點形狀</option>
                     <option value="Circle">圓形</option>
                     <option value="Triangle">三角形</option>
                     <option value="Rectangle">長方形</option>
                     <option value="FivePointedStar">星形</option>
                 </select>
                 <select id="Color">
-                    <option value="No">請選擇節點顏色</option>
+                    <option value="No">選擇節點顏色</option>
                     <option value="blue">藍色</option>
                     <option value="green">綠色</option>
                     <option value="purple">紫色</option>
@@ -141,5 +127,63 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.21/vue.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
         <script src="./main.js"></script>
+        <script type="text/javascript" src="timetable_test.json"></script>
     </body>
+    <script>
+      var course_data = all_course;
+      var dept = [];
+      for (var i=0;i<course_data.length;i++) {
+        dept.push(course_data[i].dep);
+      }
+
+      document.addEventListener("change", function() {
+        var dept_index = document.getElementById("AddDept").selectedIndex;
+        var course_index = document.getElementById("CourseType").value;
+        // if(document.getElementById("AddDept").value == "No"){
+        //   console.log("disable");
+        //   document.getElementById("CourseType").disabled = true;
+        // }
+        vue_add_new_node.cfilter_data = course_data[dept_index-1].course;
+        console.log(course_data[dept_index-1].course.length);
+        for(var i=0;i<course_data[dept_index-1].course.length;i++){
+          // console.log(i+" "+course_data[dept_index-1].course[i]+" "+course_data[dept_index-1].ctype[i]);
+        }
+
+        if(document.getElementById("CourseType").value==0){
+          vue_add_new_node.cfilter_data = [];
+          console.log(vue_add_new_node.cfilter_data);
+          for(var i=0;i<course_data[dept_index-1].ctype.length;i++){
+            if(course_data[dept_index-1].ctype[i] == 0){
+              vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
+            } 
+          }
+          console.log(vue_add_new_node.cfilter_data.length);
+        } else if (document.getElementById("CourseType").value==1) {
+          vue_add_new_node.cfilter_data = [];
+          console.log(vue_add_new_node.cfilter_data);
+          for(var i=0;i<course_data[dept_index-1].course.length;i++){
+            if(course_data[dept_index-1].ctype[i]==1){
+              vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
+            }
+          }
+          console.log(vue_add_new_node.cfilter_data.length);
+        }
+
+      });
+
+
+
+      var vue_add_new_node = new Vue ({
+        el: '#UserAdd',
+        data: {
+          course_data: course_data,
+          dept_data: vue_depart_list.departments,
+          cfilter_data: [],
+        },
+        methods: {
+
+        }
+      });
+
+    </script>
 </html>
