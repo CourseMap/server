@@ -13,29 +13,31 @@
     </head>
     <body>
       <div class="ui modal" id="login__modal">
-        <div class="header"><a href="">註冊</a> 或 <a href="" style="color:#4172b3">登入</a></div>
+        <div class="header"><a onclick="showRegist()">註冊</a> 或 <a onclick="showLogin()" style="color:#4172b3">登入</a></div>
         <div class="flex-container content">
           <div class="login_logo"><img src="./picture/login_logo.png"></div>
           <p id="errormsg"></p>
           <div id="select_dept" style="margin-right:100px">
             <div class="login_input">
-              <p><span>email </span><input type="text" name="account" id="account"></p>
-              <p><span>username </span><input type="text" name="username" id="username"></p>
-              <p><span>Department</span>
+              <p><span>電子信箱 </span><input type="text" name="account" id="account"></p>
+              <p><span>用戶名稱 </span><input type="text" name="username" id="username"></p>
+              <p><span>系所名稱</span>
                 <select name="dept" id="sel__dept">
-                  <option value="No">----請選擇系所---</option>
+                  <option value="No">-----請選擇系所-----</option>
                   <option v-for="(depart,index) in departments">{{depart}}</option>
                 </select></p>
-              <p><span>password </span><input type="password" name="password" id="pwd"></p>
-              <button type="submit" id="regist-btn" @click="" class="ui positive icon button">註冊</button>
+              <p><span>設定密碼 </span><input type="password" name="password" id="pwd"></p>
+              <button type="submit" id="regist-btn" class="ui positive icon button">註冊</button>
             </div>
 
           </div>
-          <!-- <div style="">
-            <p><span>email </span><br><input type="text" id="log__em"></p>
-            <p><span>password </span><br><input type="password" id="log__pass"></p>
-            <button type="submit" id="login-btn" class="ui positive right labeled icon button">登入</button>
-          </div> -->
+          <div id="user_login" style="margin-right:100px">
+            <div class="login_input">
+              <p><span>電子信箱 </span><input type="text" id="log__em"></p>
+              <p><span>輸入密碼 </span><input type="password" id="log__pass"></p>
+              <button type="submit" id="login-btn" class="ui positive icon button">登入</button>
+            </div>
+          </div>
           <div>
           </div>
         </div>
@@ -46,7 +48,7 @@
           <nav class="navbar navbar-fixed-top">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" id="nav-btn">☰  CourseMap</a>
+                <a class="navbar-brand" id="nav-btn"><span style="margin-right:13px"> ☰ </span>CourseMap</a>
               </div>
               <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">Home</a></li>
@@ -94,7 +96,7 @@
             <div class="sidenav__btn--mod">
               <button id="AddButton" onclick="AddNode()" class="sidenav__btn">新增</button>
               <button id="UndoButton" onclick="UndoAddNode()" class="sidenav__btn">復原</button>
-              <button id="SaveButton" onclick="SaveNode()" class="sidenav__btn" style="float:right;">儲存</button>
+              <button id="SaveButton" onclick="SaveNode()" class="sidenav__btn" style="">儲存</button>
             </div>
           </div>
         </div>

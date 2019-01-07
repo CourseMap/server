@@ -3,10 +3,19 @@ body {
   font-family: sans-serif;
 }
 
+a {
+  cursor: pointer;
+}
+
 .navbar {
   border: none;
-  background-color: #fff;
+  background-color: #f2f2f2;
   padding: 0 1vw;
+}
+
+.navbar-brand {
+  font-size: 20px;
+
 }
 
 /* login modal*/
@@ -53,14 +62,23 @@ body {
   background-color: #03396c;
 }
 
-#regist-btn {
+.ui.positive.button:active {
+  background-color: #03396c;
+}
+
+#regist-btn, #login-btn {
   margin-top: 3vh;
+}
+
+#user_login {
+  display: none;
 }
 
 /* nav */
 nav a {
   color: #323232;
   cursor: pointer;
+  font-size: 20px;
 }
 
 a:focus {
@@ -117,7 +135,7 @@ a:hover {
 .sidenav__btn {
   border: none;
   background-color: #f4f4f4;
-  width: 5vw;
+  width: 4.5vw;
   font-size: 14px;
   margin-top: 5vh;
   margin-right: 5px;

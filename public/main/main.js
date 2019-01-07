@@ -32,6 +32,7 @@ $("#logout-btn").click(function(){
     $("#login__modal").modal('show');
 });
 
+//for html
 let opennav_var = false;
 document.getElementById("nav-btn").addEventListener("click", function(){
   if(opennav_var==false){
@@ -44,10 +45,15 @@ document.getElementById("nav-btn").addEventListener("click", function(){
     console.log("hide");
   }
 });
-function opennav(){
 
+function showRegist() {
+  document.getElementById("user_login").style.display = "none";
+  document.getElementById("select_dept").style.display = "block";
+}
 
-  console.log("H1");
+function showLogin() {
+  document.getElementById("user_login").style.display = "block";
+  document.getElementById("select_dept").style.display = "none";
 }
 
 //button disabled or enabled
@@ -407,7 +413,7 @@ function printthemap(data_json){
       {
           name: "SHAPE",
           strokeWidth: 5,
-          stroke : "#CCCCCC",
+          stroke : "#e0e0e0",
           mouseEnter: mouseEnter_link,
           mouseLeave: mouseLeave_link,
       }),
@@ -629,7 +635,7 @@ Canvas.linkTemplate = objGo(go.Link,
     {
         name: "SHAPE",
         strokeWidth: 5,
-        stroke : "#CCCCCC",
+        stroke : "#e0e0e0",
         mouseEnter: mouseEnter_link,
         mouseLeave: mouseLeave_link,
     }),
@@ -673,13 +679,13 @@ function click_node(e, node){ // change color when clicking node
         }
         node.data.IsClicked = true;
         if(node.data.CreditType == 0){
-            shape.fill = "green";
-            node.data.Color = "green";
+            shape.fill = "#49796b";
+            node.data.Color = "#49796b";
             credit1 += node.data.Credits;
         }
         else{
-            shape.fill = "blue";
-            node.data.Color = "blue";
+            shape.fill = "#3b5998";
+            node.data.Color = "#3b5998";
             credit2 += node.data.Credits;
         }
     }
@@ -699,19 +705,19 @@ function click_node(e, node){ // change color when clicking node
 function mouseEnter_node(e, node){  // change node color when mouse hover
     let shape = node.part.findObject("SHAPE");
     if (shape.fill == "lightblue")
-        shape.fill = "red";
+        shape.fill = "#adbce6";
 }
 function mouseLeave_node(e, node){  // restore to original color
     let shape = node.part.findObject("SHAPE");
-    if (shape.fill == "red")
+    if (shape.fill == "#adbce6")
         shape.fill = "lightblue";
 }
 function mouseEnter_link(e, node){
-    node.stroke = "black";
+    node.stroke = "#5a5a5a";
     node.strokeWidth =  7;
 }
 function mouseLeave_link(e, node){
-    node.stroke = "#CCCCCC";
+    node.stroke = "#e0e0e0";
     node.strokeWidth =  5;
 }
 function Clear_Click(node){
