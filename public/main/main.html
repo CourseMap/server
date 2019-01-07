@@ -4,8 +4,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.8.33/go-debug.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-        <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main.css">
         <title>Course Map</title>
         <meta charset="utf-8">
 
@@ -37,32 +38,26 @@
           </div>
         </div>
       </div>
-        <!-- <div id="LoginPage">
-            <img src="./picture/login_logo.png">
-            <h1>Welcome</h1>
-            <div class="form_container">
-                <a>
-                    姓名：
-                    <input type="text" id="name" placeholder="User" maxlength="3" autofocus required>
-                </a>
-                <br><br>
-                <a>
-                    系所：
-                    <select name="department" id="department" required>
-                        <option value="No">--請選擇系所--</option>
-                    </select>
-                </a>
-                <br><br>
-                <a>
-                    <input id="login_button" type="submit" value="登入" onclick="submit_data()">
-                </a>
-            </div>
-        </div> -->
+
+
         <div id="MainPage">
-          <nav>
-            <h4>CourseMap</h4>
-            <button type="button" class="ui positive right labeled icon button" id="logout-btn">登出</button>
-          </nav>
+          <nav class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" id="nav-btn" onclick="opennav()">☰  CourseMap</a>
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Main Page</a></li>
+                <li><a id="logout-btn">Log Out</a></li>
+              </ul>
+          </div>
+        </nav>
+
+        <div id="sidenav">
+          <p>123123</p>
+        </div>
+
             <h1 id="information1"> </h1>
             <h1 id="information2"> </h1>
             <div class="semester_container">
@@ -154,7 +149,7 @@
         //   document.getElementById("CourseType").disabled = true;
         // }
         vue_add_new_node.cfilter_data = course_data[dept_index-1].course;
-        
+
         if(document.getElementById("CourseType").value=="No" && document.getElementById("CourseName")!="No"){
           var course_id = document.getElementById("CourseName").selectedIndex-1;
           console.log(course_data[dept_index-1].ctype[course_id]);

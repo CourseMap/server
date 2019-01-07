@@ -2,21 +2,61 @@
   width: 20%;
 }
 
+body {
+  /* overflow-y: hidden; */
+}
+
+.navbar {
+  border: none;
+  background-color: #fff;
+}
+
+nav {
+}
+
+nav a {
+  color: #323232;
+  cursor: pointer;
+}
+
+a:focus {
+  outline: 0px;
+}
+
+a:visited {
+  color: #323232;
+}
+
+a:hover {
+  color: #7f7f7f;
+}
+
+.nav>li>a:hover {
+  background-color: transparent;
+  color: #7f7f7f;
+}
+
+#sidenav {
+  display: block;
+  background-color: rgb(201,201,201,0.8);
+  height: 100vh;
+  min-width: 300px;
+  width: 20vw;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 5;
+}
+
 html, body, #Canvas{
     height: 100%;
     margin: 0;
+    font-family: sans-serif;
 }
 *::-webkit-scrollbar{
     display: none;
 }
 #information1, #information2{
     color: #353535;
-}
-
-#logout-btn {
-  display: inline-block;
-  position: absolute;
-  float:right;
 }
 
 /*Main Page*/

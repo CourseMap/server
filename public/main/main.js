@@ -1,4 +1,3 @@
-
 var vue_depart_list = new Vue ({
   el: '#select_dept',
   data: {
@@ -8,8 +7,6 @@ var vue_depart_list = new Vue ({
   }
 
 });
-
-
 
 var select_list = document.getElementById("sel__dept");
 
@@ -34,6 +31,11 @@ $("#login__modal").modal('setting', 'closable', false).modal('show');
 $("#logout-btn").click(function(){
     $("#login__modal").modal('show');
 });
+
+function opennav(){
+  document.getElementById("sidenav").style.opacity = 1;
+  console.log("H1");
+}
 
 //button disabled or enabled
 document.getElementById("regist-btn").disabled = true;
@@ -724,28 +726,30 @@ function AddNode(){
     let InputName = document.getElementById("CourseName");
     let InputGrade = document.getElementById("Grade");
     let InputType = document.getElementById("CourseType");
-    let InputCredits = document.getElementById("Credits");
+    // let InputCredits = document.getElementById("Credits");
     let InputShape = document.getElementById("Shape");
     let InputColor = document.getElementById("Color");
-    if(InputName.value == "No" || InputGrade.value == "No" || InputType.value == "No" || InputCredits.value == "No" || InputShape.value == "No" || InputColor.value == "No"){
-        document.getElementById("dia").innerHTML = "Please Input Complete Information !";
-         $('#alert__modal').modal('show');
-        return;
-    }
+    // if(InputName.value == "No" || InputGrade.value == "No" || InputType.value == "No" || InputCredits.value == "No" || InputShape.value == "No" || InputColor.value == "No"){
+    //     document.getElementById("dia").innerHTML = "Please Input Complete Information !";
+    //      $('#alert__modal').modal('show');
+    //     return;
+    // }
     --Undokey;
     Canvas.startTransaction("ADD");
     Canvas.model.addNodeData({
         CourseName: InputName.value ,
-        loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
+        // loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
+        loc: row_width*7 + " " + col_width*CourseNums[7],
         IsClicked: false,// prevent clicking to change color
-        CreditType: InputType.value,
-        Credits: InputCredits.value,
+        // CreditType: InputType.value,
+        // Credits: InputCredits.value,
         Shape: InputShape.value,
         Color: InputColor.value,
         key: Undokey,
     });
     Canvas.commitTransaction("ADD");
-    ++CourseNums[InputGrade.value];
+    // ++CourseNums[InputGrade.value];
+    ++CourseNums[7];
     // if(InputType.value == 0){
     //     total_credit1 += InputCredits.value;
     //     credit1 += InputCredits.value;;
@@ -758,9 +762,9 @@ function AddNode(){
     // information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 
     InputName.value = "";
-    InputGrade.value = "No";
+    // InputGrade.value = "No";
     InputType.value = "No";
-    InputCredits.value = "No";
+    // InputCredits.value = "No";
     InputShape.value = "No";
     InputColor.value = "No";
 }
