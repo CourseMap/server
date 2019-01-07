@@ -32,8 +32,21 @@ $("#logout-btn").click(function(){
     $("#login__modal").modal('show');
 });
 
+let opennav_var = false;
+document.getElementById("nav-btn").addEventListener("click", function(){
+  if(opennav_var==false){
+    document.getElementById("sidenav").style.display = "block";
+    opennav_var = true;
+    console.log("show");
+  } else if(opennav_var==true) {
+    document.getElementById("sidenav").style.display = "none";
+    opennav_var = false;
+    console.log("hide");
+  }
+});
 function opennav(){
-  document.getElementById("sidenav").style.opacity = 1;
+
+
   console.log("H1");
 }
 
@@ -94,7 +107,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     userLogin = null;
     document.getElementById("errormsg").innerHTML = "Please sign in first.";
     console.log("Bye");
-    // $('#login__modal').modal('show');
+    $('#login__modal').modal('show');
   }
 });
 

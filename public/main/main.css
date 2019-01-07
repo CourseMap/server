@@ -1,19 +1,63 @@
-.content > img {
-  width: 20%;
-}
-
 body {
   overflow-x: hidden;
+  font-family: sans-serif;
 }
 
 .navbar {
   border: none;
   background-color: #fff;
+  padding: 0 1vw;
 }
 
-nav {
+/* login modal*/
+.ui.modal>.header:not(.ui) {
+  font-size: 20px;
 }
 
+.ui.modal {
+  text-align: center;
+  width: 500px;
+
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_logo {
+}
+
+.login_logo img {
+  width: 90%;
+}
+
+.login_input {
+  margin-top: 10vh;
+  text-align: right;
+}
+
+.login_input select, input {
+  width: 200px;
+}
+
+.login_input input{
+  border: none;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.ui.positive.button {
+  background-color: #03396c;
+}
+
+#regist-btn {
+  margin-top: 3vh;
+}
+
+/* nav */
 nav a {
   color: #323232;
   cursor: pointer;
@@ -37,26 +81,37 @@ a:hover {
 }
 
 #sidenav {
-  display: block;
+  display: none;
   position: fixed;
-  background-color: rgb(40,40,40,0.3);
+  background-color: rgb(40,40,40,0.9);
   height: 100vh;
   min-width: 300px;
   width: 20vw;
-  opacity: 0;
-  transition: 0.3s;
+  transition: 0.5s;
   z-index: 10;
   overflow-y: hidden;
+  top: 0;
 }
 
+#sidenav h4 {
+  color: #fff;
+  font-weight: normal;
+}
+
+
+
 .sidenav__contain {
-  padding-top: 13vh;
+  padding-top: 12vh;
   padding-left: 2vw;
   padding-right: 2vw;
 }
 
 .sidenav__contain select {
   margin: 1vh 0px;
+}
+
+.select--style {
+  margin-top: 3vh;
 }
 
 .sidenav__btn {
@@ -84,7 +139,19 @@ select {
   padding: 3px 5px;
   width: 250px;
   height: 5vh;
-  color: #323232;
+
+}
+
+select[disabled] {
+  color: #a9a9a9;
+}
+
+.welcome_slogan {
+  position: relative;
+  top: 9vh;
+  margin: 0 2vw;
+  color: #525252;
+  height: 10%;
 }
 
 html, body, #Canvas{
@@ -96,9 +163,9 @@ html, body, #Canvas{
 *::-webkit-scrollbar{
     display: none;
 }
-#information1, #information2{
+/* #information1, #information2{
     color: #353535;
-}
+} */
 
 /*Main Page*/
 /*My div*/
@@ -135,6 +202,7 @@ canvas {
     width: 100%;
     height: 50px;
     margin-bottom: 1rem;
+    margin-top: 10vh;
 }
 #sem1, #sem2, #sem3, #sem4, #sem5, #sem6, #sem7, #sem8{
     width: 100px;
@@ -143,9 +211,9 @@ canvas {
     background-repeat: no-repeat;
     background-size: cover;
 }
-#information1, #information2{
+/* #information1, #information2{
     margin-left: 2rem;
-}
+} */
 /*Login Page*/
 #LoginPage{
     /*background-image: radial-gradient(circle, cyan, violet);*/
@@ -196,7 +264,7 @@ div.ui.approve.button{
     font-weight: bold;
 }
 
-a, #login_button, #name, #department{
+#login_button, #name, #department{
     font-size: 80%;
     font-family: "Microsoft YaHei";
 }
