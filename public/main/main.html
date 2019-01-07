@@ -55,7 +55,45 @@
         </nav>
 
         <div id="sidenav">
-          <p>123123</p>
+          <div class="sidenav__contain">
+            <h4>新增課程</h4>
+            <div class="select--style">
+              <select id="AddDept">
+                <option name="choosedept" value="No">選擇系所</option>
+                <option v-for="(dept, index) in dept_data">{{dept}}</option>
+              </select>
+            </div>
+
+            <select id="CourseType">
+                <option value="No" >選擇課程類別</option>
+                <option value="0">必修</option>
+                <option value="1">選修</option>
+            </select>
+            <!-- <input type="text" id="InputName" placeholder="課程名稱" maxlength="15" required> -->
+            <select id="CourseName">
+                <option value="No">選擇課程名稱</option>
+                <option v-for="(course, index) in cfilter_data">{{course}}</option>
+            </select>
+            <select id="Shape">
+                <option value="No">選擇節點形狀</option>
+                <option value="Circle">圓形</option>
+                <option value="Triangle">三角形</option>
+                <option value="Rectangle">長方形</option>
+                <option value="FivePointedStar">星形</option>
+            </select>
+            <select id="Color">
+                <option value="No">選擇節點顏色</option>
+                <option value="blue">藍色</option>
+                <option value="green">綠色</option>
+                <option value="purple">紫色</option>
+                <option value="yellow">黃色</option>
+            </select>
+            <div class="sidenav__btn--mod">
+              <button id="AddButton" onclick="AddNode()" class="sidenav__btn">新增</button>
+              <button id="UndoButton" onclick="UndoAddNode()" class="sidenav__btn">復原</button>
+              <button id="SaveButton" onclick="SaveNode()" class="sidenav__btn" style="float:right;">儲存</button>
+            </div>
+          </div>
         </div>
 
             <h1 id="information1"> </h1>
@@ -72,7 +110,7 @@
             </div>
         </div>
         <div id="Canvas"></div>
-        <div id="UserAdd">
+        <!-- <div id="UserAdd">
             <h1 id="InputTitle">
                 使用者專區
             </h1>
@@ -86,7 +124,6 @@
                     <option value="0">必修</option>
                     <option value="1">選修</option>
                 </select>
-                <!-- <input type="text" id="InputName" placeholder="課程名稱" maxlength="15" required> -->
                 <select id="CourseName">
                     <option value="No">選擇課程名稱</option>
                     <option v-for="(course, index) in cfilter_data">{{course}}</option>
@@ -109,7 +146,7 @@
             <button id="AddButton" onclick="AddNode()">新增</button>
             <button id="UndoButton" onclick="UndoAddNode()">復原</button>
             <button id="SaveButton" onclick="SaveNode()">儲存</button>
-        </div>
+        </div> -->
         <div class="ui modal" id="alert_modal">
             <div class="content">
               <p id="dia"></p>
@@ -186,7 +223,7 @@
 
 
       var vue_add_new_node = new Vue ({
-        el: '#UserAdd',
+        el: '#sidenav',
         data: {
           course_data: course_data,
           dept_data: vue_depart_list.departments,

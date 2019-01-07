@@ -3,7 +3,7 @@
 }
 
 body {
-  /* overflow-y: hidden; */
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -38,13 +38,53 @@ a:hover {
 
 #sidenav {
   display: block;
-  background-color: rgb(201,201,201,0.8);
+  position: fixed;
+  background-color: rgb(40,40,40,0.3);
   height: 100vh;
   min-width: 300px;
   width: 20vw;
   opacity: 0;
   transition: 0.3s;
-  z-index: 5;
+  z-index: 10;
+  overflow-y: hidden;
+}
+
+.sidenav__contain {
+  padding-top: 13vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.sidenav__contain select {
+  margin: 1vh 0px;
+}
+
+.sidenav__btn {
+  border: none;
+  background-color: #f4f4f4;
+  width: 5vw;
+  font-size: 14px;
+  margin-top: 5vh;
+  margin-right: 5px;
+  border-radius: 5px;
+  padding: 0.5vh 0px;
+}
+
+.sidenav__btn:hover {
+  background-color: #d3d3d3;
+}
+
+.sidenav__btn--mod {
+  width: 20vw;
+}
+
+select {
+  border: none;
+  border-radius: 0px;
+  padding: 3px 5px;
+  width: 250px;
+  height: 5vh;
+  color: #323232;
 }
 
 html, body, #Canvas{
@@ -52,6 +92,7 @@ html, body, #Canvas{
     margin: 0;
     font-family: sans-serif;
 }
+
 *::-webkit-scrollbar{
     display: none;
 }
@@ -129,11 +170,11 @@ canvas {
     width: 50%;
     /* border: 3px solid black; */
 }
-input, select, option{
+/* input, select, option{
     height: 2rem;
     width: 250px;
-    /* vertical-align: middle; */
-}
+    vertical-align: middle;
+} */
 #login_button{
     width: 75px;
     height: 45px;
@@ -170,19 +211,20 @@ img{
     height: 20%;
 }
 
-#InputName, #Grade, #Type, #Credits, #Shape, #Color{
+/* #InputName, #Grade, #Type, #Credits, #Shape, #Color{
     font-size: 200%;
     margin-left: 10px;
     height: 4rem;
     width: 12%;
-}
-#AddButton, #UndoButton, #SaveButton{
+} */
+
+/* #AddButton, #UndoButton, #SaveButton{
     font-size: 2rem;
     margin-left:30px;
     vertical-align: middle;
     height: 4rem;
     width: 5%;
-}
+} */
 #InputTitle{
     text-align: center;
 }
