@@ -676,7 +676,7 @@ function click_node(e, node){ // change color when clicking node
         else
             credit2 -= node.data.Credits;
     }
-    
+
     total = credit1 + credit2;
     information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 }
@@ -742,7 +742,7 @@ function AddNode(){
         loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
         IsClicked: false,// prevent clicking to change color
         CreditType: InputType.value,
-        Credits: InputCredits.value,
+        Credits: Number(InputCredits.value),
         Shape: InputShape.value,
         Color: InputColor.value,
         key: Undokey,
