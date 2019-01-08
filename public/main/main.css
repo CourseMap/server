@@ -169,11 +169,21 @@ select[disabled] {
 }
 
 .welcome_slogan {
-  position: relative;
-  top: 9vh;
+  position: fixed;
+  bottom: 3vh;
+  right: 1vw;
+  background-color: #282828;
+  opacity: 0.5;
   margin: 0 2vw;
-  color: #525252;
-  height: 10%;
+  color: #fff;
+  height: 15%;
+  padding: 3vh 2vw;
+  border-radius: 10px;
+}
+
+.welcome_slogan:hover {
+  opacity: 1;
+  transition: 0.3s;
 }
 
 html, body, #Canvas{
