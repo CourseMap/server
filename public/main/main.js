@@ -192,7 +192,7 @@ let credit1 = 0;
 let credit2 = 0;
 let total_credit1 = 0;
 let total_credit2 = 0;
-let total = credit1 + credit2;
+var total = credit1 + credit2;
 
 function printthemap(data_json){
   console.log(data_json);
@@ -544,12 +544,12 @@ for(let i=0; i<index; ++i){
 
 var loginUser = firebase.auth().currentUser;
 
-firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').set({
-      required: total_credit1,
-      elective: total_credit2
-    }).catch(function(err) {
-      console.log(err);
-    });
+// firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').set({
+//       required: total_credit1,
+//       elective: total_credit2
+//     }).catch(function(err) {
+//       console.log(err);
+//     });
 
 console.log("total credits:" + total_credit1 +" and "+ total_credit2);
 
@@ -591,7 +591,7 @@ Canvas.nodeTemplate = objGo(go.Node, "Vertical",
         width: 120,
         margin: 10,
         stroke: "#353535",
-        font: "bold 20px sans-serif",
+        font: "16px sans-serif",
         textAlign: "center",
     },
     new go.Binding("text", "CourseName")),
@@ -676,7 +676,7 @@ function click_node(e, node){ // change color when clicking node
         else
             credit2 -= node.data.Credits;
     }
-
+    
     total = credit1 + credit2;
     information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 }
@@ -750,23 +750,28 @@ function AddNode(){
     Canvas.commitTransaction("ADD");
     // ++CourseNums[InputGrade.value];
     ++CourseNums[InputGrade.value];
+
     // if(InputType.value == 0){
     //     total_credit1 += InputCredits.value;
-    //     credit1 += InputCredits.value;;
+    //     credit1 += InputCredits.value;
     // }
     // if(InputType.value == 1){
     //     total_credit2 += InputCredits.value;
     //     credit2 += InputCredits.value;
     // }
-    // total += InputCredits.value;
-    // information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
+
+    var new_credit = Number(InputCredits.value);
+
+    total = new_credit + total;
+    information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 
     InputName.value = "";
     InputGrade.value = "";
     InputType.value = "No";
-    InputCredits.value = "No";
+    InputCredits.value = 0;
     InputShape.value = "No";
     InputColor.value = "No";
+
 }
 function UndoAddNode(){
     if(Undokey == 0)
