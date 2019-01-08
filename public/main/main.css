@@ -29,6 +29,10 @@ a {
 
 }
 
+.save-btn {
+  background-color: #365998;
+}
+
 .content {
   display: flex;
   justify-content: center;

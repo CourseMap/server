@@ -53,9 +53,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#">首頁</a></li>
                 <li><a id="logout-btn">登出</a></li>
+                <li class="save-btn"><a id="SaveButton" onclick="SaveNode()" style="color:#fff;font-weight:bold">儲存</a></li>
               </ul>
           </div>
         </nav>
+
 
         <div id="sidenav">
           <div class="sidenav__contain">
@@ -92,27 +94,32 @@
                 <option value="purple">紫色</option>
                 <option value="yellow">黃色</option>
             </select>
+            <div style="display:none">
+              <select id="Credits">
+                <option value="No">default</option>
+                <option v-for="course in credit_data">{{course}}</option>
+              </select>
+            </div>
             <div class="sidenav__btn--mod">
               <button id="AddButton" onclick="AddNode()" class="sidenav__btn">新增</button>
               <button id="UndoButton" onclick="UndoAddNode()" class="sidenav__btn">復原</button>
-              <button id="SaveButton" onclick="SaveNode()" class="sidenav__btn" style="">儲存</button>
             </div>
           </div>
         </div>
           <div class="welcome_slogan">
             <h3 id="information1"> </h1>
-            <h3 id="information2"> </h1>
+            <h4 id="information2"> </h1>
           </div>
 
             <div class="semester_container">
-                <div id="sem1"></div>
-                <div id="sem2"></div>
-                <div id="sem3"></div>
-                <div id="sem4"></div>
-                <div id="sem5"></div>
-                <div id="sem6"></div>
-                <div id="sem7"></div>
-                <div id="sem8"></div>
+                <div id="sem1" onclick="PrintTable(1)"></div>
+                <div id="sem2" onclick="PrintTable(2)"></div>
+                <div id="sem3" onclick="PrintTable(3)"></div>
+                <div id="sem4" onclick="PrintTable(4)"></div>
+                <div id="sem5" onclick="PrintTable(5)"></div>
+                <div id="sem6" onclick="PrintTable(6)"></div>
+                <div id="sem7" onclick="PrintTable(7)"></div>
+                <div id="sem8" onclick="PrintTable(8)"></div>
             </div>
         </div>
         <div id="Canvas"></div>
@@ -187,11 +194,13 @@
 
         var dept_index = document.getElementById("AddDept").selectedIndex;
         var course_index = document.getElementById("CourseType").value;
-        // if(document.getElementById("AddDept").value == "No"){
-        //   console.log("disable");
-        //   document.getElementById("CourseType").disabled = true;
-        // }
+
         vue_add_new_node.cfilter_data = course_data[dept_index-1].course;
+        vue_add_new_node.credit_data = course_data[dept_index-1].credit;
+        // document.getElementById("Credits").value =
+        var credit_index = document.getElementById("CourseName").selectedIndex;
+        document.getElementById("Credits").value = course_data[dept_index-1].credit[credit_index-1];
+        console.log(document.getElementById("Credits").value);
 
         if(document.getElementById("CourseType").value=="No" && document.getElementById("CourseName")!="No"){
           var course_id = document.getElementById("CourseName").selectedIndex-1;
@@ -212,10 +221,8 @@
               vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
             }
           }
-          console.log(vue_add_new_node.cfilter_data.length);
         } else if (document.getElementById("CourseType").value==1) {
           vue_add_new_node.cfilter_data = [];
-          console.log(vue_add_new_node.cfilter_data);
           for(var i=0;i<course_data[dept_index-1].course.length;i++){
             if(course_data[dept_index-1].ctype[i]==1){
               vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
@@ -234,6 +241,7 @@
           course_data: course_data,
           dept_data: vue_depart_list.departments,
           cfilter_data: [],
+          credit_data: []
         },
         methods: {
 

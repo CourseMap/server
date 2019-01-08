@@ -3,8 +3,7 @@ var vue_depart_list = new Vue ({
   data: {
     departments: ["中文系 CL", "外文系 FLL", "歷史系 HIS", "台文系 TWL", "數學系 MATH", "物理系 PHYS", "化學系 CHEM", "地科系 EARS", "光電系 DPS", "機械系 ME", "化工系 CHE", "資源系 RE", "材料系 MSE", "土木系 CE", "水利系 HOE", "工科系 ES", "能源學程 IBPE", "系統系 SNME", "都計系 UP", "航太系 AA", "環工系 EV", "測量系 GM", "醫工系 BME", "會計系 ACC", "統計系 STAT", "工資系 IIM", "企管系 BA", "交管系 TCM", "護理系 NURS", "醫技系 MLSB", "醫學系 MED", "物治系 PT", "職治系 OT", "藥學系 DOPA", "法律系 LAW", "政治系 PS", "經濟系 ECON", "心理系 PSY", "電機系 EE", "資訊系 CSIE", "建築系 ARCH", "工設系 ID", "生科系 LS", "生技系 BBS"],
 },
-  methods: {
-  }
+  methods: {}
 
 });
 
@@ -243,7 +242,7 @@ function printthemap(data_json){
   if(name.value == "")
       name.value = "User";
   //select_list1
-  document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[departIndex-1]})`;
+  document.getElementById("information1").childNodes[0].nodeValue = `${name.value} ${department_data[departIndex-1]}`;
 
   for(let i=1; i<=8; ++i){
       let sem = document.getElementById("sem" + i);
@@ -702,6 +701,7 @@ function click_node(e, node){ // change color when clicking node
     total = credit1 + credit2;
     information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 }
+
 function mouseEnter_node(e, node){  // change node color when mouse hover
     let shape = node.part.findObject("SHAPE");
     if (shape.fill == "lightblue")
@@ -730,9 +730,11 @@ function Clear_Click(node){
     while(true){
         Clear_Click(iterator.value);
         let shape = iterator.value.findObject("SHAPE");
-        if((shape.fill == "green" || shape.fill == "blue") && iterator.value.data.CreditType == 0)
+        // if((shape.fill == "green" || shape.fill == "blue") && iterator.value.data.CreditType == 0)
+        if((shape.fill == "#49796b" || shape.fill == "#3b5998") && iterator.value.data.CreditType == 0)
             credit1 -= iterator.value.data.Credits;
-        if((shape.fill == "green" || shape.fill == "blue") && iterator.value.data.CreditType == 1)
+        // if((shape.fill == "green" || shape.fill == "blue") && iterator.value.data.CreditType == 1)
+        if((shape.fill == "#49796b" || shape.fill == "#3b5998") && iterator.value.data.CreditType == 1)
             credit2 -= iterator.value.data.Credits;
         iterator.value.data.IsClicked = false;
         shape.fill = "lightblue";
@@ -745,7 +747,7 @@ function AddNode(){
     let InputName = document.getElementById("CourseName");
     let InputGrade = document.getElementById("Grade");
     let InputType = document.getElementById("CourseType");
-    // let InputCredits = document.getElementById("Credits");
+    let InputCredits = document.getElementById("Credits");
     let InputShape = document.getElementById("Shape");
     let InputColor = document.getElementById("Color");
     // if(InputName.value == "No" || InputGrade.value == "No" || InputType.value == "No" || InputCredits.value == "No" || InputShape.value == "No" || InputColor.value == "No"){
@@ -760,8 +762,8 @@ function AddNode(){
         // loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
         loc: row_width*7 + " " + col_width*CourseNums[7],
         IsClicked: false,// prevent clicking to change color
-        // CreditType: InputType.value,
-        // Credits: InputCredits.value,
+        CreditType: InputType.value,
+        Credits: InputCredits.value,
         Shape: InputShape.value,
         Color: InputColor.value,
         key: Undokey,
@@ -781,9 +783,9 @@ function AddNode(){
     // information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 
     InputName.value = "";
-    // InputGrade.value = "No";
+    InputGrade.value = "";
     InputType.value = "No";
-    // InputCredits.value = "No";
+    InputCredits.value = "No";
     InputShape.value = "No";
     InputColor.value = "No";
 }
@@ -797,6 +799,8 @@ function UndoAddNode(){
     Canvas.commitTransaction("Undo");
     ++Undokey;
 }
+
+
 function SaveNode(){
     console.log(Canvas.model.nodeDataArray);
     var loginUser = firebase.auth().currentUser;
