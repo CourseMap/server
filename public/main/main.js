@@ -223,19 +223,15 @@ let credit2 = 0;
 let total_credit1 = 0;
 let total_credit2 = 0;
 let total = credit1 + credit2;
+
 function printthemap(data_json){
   console.log(data_json);
   credit1 = 0;
   credit2 = 0;
-  total_credit1 = 0;
-  total_credit2 = 0;
-  total = credit1 + credit2;
-  row_width = innerWidth/8;
-  col_width = 150;
-  CourseNums = [];
-  DataArray = [];
-  LinkArray = [];
-  Undokey = 0;
+//   total_credit1 = 0;
+//   total_credit2 = 0;
+//   total = credit1 + credit2;
+//   Undokey = 0;
   var data_json;
 
   const name = document.getElementById("username");
