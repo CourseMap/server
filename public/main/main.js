@@ -161,10 +161,6 @@ if(loginBtn){
   }, false);
 }
 
-
-
-
-
 //log out
 var logoutBtn = document.getElementById("logout-btn");
 if(logoutBtn) {
@@ -182,36 +178,7 @@ if(logoutBtn) {
 
 // let department_data = depart_list.departments;
 let department_data = ["中文系 CL", "外文系 FLL", "歷史系 HIS", "台文系 TWL", "數學系 MATH", "物理系 PHYS", "化學系 CHEM", "地科系 EARS", "光電系 DPS", "機械系 ME", "化工系 CHE", "資源系 RE", "材料系 MSE", "土木系 CE", "水利系 HOE", "工科系 ES", "能源學程 IBPE", "系統系 SNME", "都計系 UP", "航太系 AA", "環工系 EV", "測量系 GM", "醫工系 BME", "會計系 ACC", "統計系 STAT", "工資系 IIM", "企管系 BA", "交管系 TCM", "護理系 NURS", "醫技系 MLSB", "醫學系 MED", "物治系 PT", "職治系 OT", "藥學系 DOPA", "法律系 LAW", "政治系 PS", "經濟系 ECON", "心理系 PSY", "電機系 EE", "資訊系 CSIE", "建築系 ARCH", "工設系 ID", "生科系 LS", "生技系 BBS"];
-// const select_list = document.getElementById("department");
 
-// department_data.forEach(ele => {
-//     let option = document.createElement("option");
-//     let text = document.createTextNode(ele);
-//     let index = department_data.indexOf(ele);;
-//     option.value = index;
-//     option.appendChild(text);
-//     select_list.appendChild(option);
-//     // console.log(index);
-//     // console.log(select_list.option[index].value);
-// });
-
-
-
-// function submit_data(){
-//     if(select_list.value == "No"){
-//         let dia = "請選擇一個系所 ！！"
-//         document.getElementById("dia").innerHTML = dia;
-//         $('.ui.modal').modal('show');
-//         return;
-//     }
-//
-//     document.getElementById("LoginPage").style.display = "none";
-//     document.getElementById("MainPage").style.display = "block";
-//     document.getElementById("Canvas").style.display = "block";
-//     document.getElementById("UserAdd").style.display = "block";
-//     console.log(select_list.value);
-//     generateMap();
-// }
 let Canvas;
 let row_width = innerWidth/8;
 let col_width = 150;
@@ -390,7 +357,7 @@ function printthemap(data_json){
           width: 120,
           margin: 10,
           stroke: "#353535",
-          font: "bold 20px sans-serif",
+          font: "16px sans-serif",
           textAlign: "center",
       },
       new go.Binding("text", "CourseName")),
@@ -574,6 +541,18 @@ for(let i=0; i<index; ++i){
     }
     DataArray[i].Credits = data_json[10][i];
 }
+
+var loginUser = firebase.auth().currentUser;
+
+firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').set({
+      required: total_credit1,
+      elective: total_credit2
+    }).catch(function(err) {
+      console.log(err);
+    });
+
+console.log("total credits:" + total_credit1 +" and "+ total_credit2);
+
 information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 console.log(DataArray);
 
@@ -697,6 +676,7 @@ function click_node(e, node){ // change color when clicking node
         else
             credit2 -= node.data.Credits;
     }
+
     total = credit1 + credit2;
     information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 }
@@ -759,7 +739,7 @@ function AddNode(){
     Canvas.model.addNodeData({
         CourseName: InputName.value ,
         // loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
-        loc: row_width*7 + " " + col_width*CourseNums[7],
+        loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
         IsClicked: false,// prevent clicking to change color
         CreditType: InputType.value,
         Credits: InputCredits.value,
@@ -769,7 +749,7 @@ function AddNode(){
     });
     Canvas.commitTransaction("ADD");
     // ++CourseNums[InputGrade.value];
-    ++CourseNums[7];
+    ++CourseNums[InputGrade.value];
     // if(InputType.value == 0){
     //     total_credit1 += InputCredits.value;
     //     credit1 += InputCredits.value;;
