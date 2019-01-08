@@ -450,7 +450,7 @@ const name = document.getElementById("username");
 if(name.value == "")
     name.value = "User";
 //select_list1
-document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[departIndex-1]})`;
+document.getElementById("information1").childNodes[0].nodeValue = `${name.value} (${department_data[departIndex-1]})`;
 // document.getElementById("information1").childNodes[0].nodeValue = `歡迎使用CourseMap！ ${name.value} (${department_data[passIndex(departIndex)]})`;
 // set semester title
 for(let i=1; i<=8; ++i){
