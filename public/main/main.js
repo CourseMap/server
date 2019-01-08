@@ -1,3 +1,4 @@
+
 var vue_depart_list = new Vue ({
   el: '#select_dept',
   data: {
@@ -6,6 +7,8 @@ var vue_depart_list = new Vue ({
   methods: {}
 
 });
+
+$("#login__modal").modal('show');
 
 var select_list = document.getElementById("sel__dept");
 
@@ -665,9 +668,9 @@ function click_node(e, node){ // change color when clicking node
             let len= node.data.LinkFrom.length;
             for(let i=0; i<len; ++i){
                 if(!DataArray[node.data.LinkFrom[i]].IsClicked){
-                    let dia = `${DataArray[node.data.LinkFrom[i]].CourseName} is not selected !!!`;
+                    let dia = `你還沒修${DataArray[node.data.LinkFrom[i]].CourseName}!!!`;
                     document.getElementById("dia").innerHTML = dia;
-                    $('.ui.modal#alert_modal').modal('show');
+                    $('#alert_modal').modal('show');
                     return;
                 }
             }
@@ -798,6 +801,7 @@ function UndoAddNode(){
 
 
 function SaveNode(){
+    $("#saved_message").modal('show');
     console.log(Canvas.model.nodeDataArray);
     var loginUser = firebase.auth().currentUser;
     console.log(loginUser.uid);

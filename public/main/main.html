@@ -12,7 +12,7 @@
 
     </head>
     <body>
-      <div class="ui modal" id="login__modal">
+      <div class="ui modal" id="login__modal" style="width: 500px;">
         <div class="header"><a onclick="showRegist()">註冊</a> 或 <a onclick="showLogin()" style="color:#4172b3">登入</a></div>
         <div class="flex-container content">
           <div class="login_logo"><img src="./picture/login_logo.png"></div>
@@ -53,7 +53,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="../about.html">關於我們</a></li>
                 <li><a id="logout-btn">登出</a></li>
-                <li class="save-btn"><a id="SaveButton" onclick="SaveNode()" style="color:#fff;font-weight:bold">儲存</a></li>
+                <li class="save-btn" style="border-radius:5px;"><a id="SaveButton" onclick="SaveNode()" style="color:#fff;font-weight:bold;">儲存</a></li>
               </ul>
           </div>
         </nav>
@@ -123,56 +123,29 @@
             </div>
         </div>
         <div id="Canvas"></div>
-        <!-- <div id="UserAdd">
-            <h1 id="InputTitle">
-                使用者專區
-            </h1>
-            <a>
-                <select id="AddDept">
-                  <option name="choosedept" value="No">選擇系所</option>
-                  <option v-for="(dept, index) in dept_data">{{dept}}</option>
-                </select>
-                <select id="CourseType">
-                    <option value="No" >選擇課程類別</option>
-                    <option value="0">必修</option>
-                    <option value="1">選修</option>
-                </select>
-                <select id="CourseName">
-                    <option value="No">選擇課程名稱</option>
-                    <option v-for="(course, index) in cfilter_data">{{course}}</option>
-                </select>
-                <select id="Shape">
-                    <option value="No">選擇節點形狀</option>
-                    <option value="Circle">圓形</option>
-                    <option value="Triangle">三角形</option>
-                    <option value="Rectangle">長方形</option>
-                    <option value="FivePointedStar">星形</option>
-                </select>
-                <select id="Color">
-                    <option value="No">選擇節點顏色</option>
-                    <option value="blue">藍色</option>
-                    <option value="green">綠色</option>
-                    <option value="purple">紫色</option>
-                    <option value="yellow">黃色</option>
-                </select>
-            </a>
-            <button id="AddButton" onclick="AddNode()">新增</button>
-            <button id="UndoButton" onclick="UndoAddNode()">復原</button>
-            <button id="SaveButton" onclick="SaveNode()">儲存</button>
-        </div> -->
+
+        <div class="ui modal" id="saved_message">
+          <div class="content">
+            <p style="font-size:18px;font-weight:bold">儲存成功！</p>
+          </div>
+          <div class="actions">
+              <div class="ui approve button">確認</div>
+          </div>
+        </div>
+
         <div class="ui modal" id="alert_modal">
             <div class="content">
               <p id="dia"></p>
             </div>
             <div class="actions">
-                <div class="ui approve button">Ok!</div>
+                <div class="ui approve button">好吧</div>
             </div>
         </div>
-        <div class="ui modal large long" id="table_modal">
+        <div class="ui modal timetable" id="table_modal">
+          <div class="header">課表</div>
           <div class="content">
-              <table BORDER="2" textalign="center" id="CourseTable">
-                  <caption>課表</caption>
-                  <tr>
+              <table textalign="center" id="CourseTable">
+                  <tr style="background-color:#adadad">
                       <td></td>
                       <td>星期一</td>
                       <td>星期二</td>
