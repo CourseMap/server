@@ -740,7 +740,7 @@ function AddNode(){
         CourseName: InputName.value ,
         // loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
         loc: row_width*InputGrade.value + " " + col_width*CourseNums[InputGrade.value],
-        IsClicked: false,// prevent clicking to change color
+        IsClicked: true,// prevent clicking to change color
         CreditType: InputType.value,
         Credits: Number(InputCredits.value),
         Shape: InputShape.value,
@@ -778,6 +778,10 @@ function UndoAddNode(){
         return;
     console.log(Undokey);
     node = Canvas.findNodeForKey(Undokey);
+    if(node.data.IsClicked){
+        total -= node.data.Credits;
+        information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
+    }
     Canvas.startTransaction("Undo");
     Canvas.remove(node);
     Canvas.commitTransaction("Undo");
