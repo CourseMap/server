@@ -760,9 +760,13 @@ function AddNode(){
     //     credit2 += InputCredits.value;
     // }
 
+
+
     var new_credit = Number(InputCredits.value);
 
     total = new_credit + total;
+
+
     information2.childNodes[0].nodeValue = `必修：${credit1} / ${total_credit1} 選修：${credit2} / ${total_credit2} 總學分：${total}`;
 
     InputName.value = "";
@@ -771,6 +775,7 @@ function AddNode(){
     InputCredits.value = 0;
     InputShape.value = "No";
     InputColor.value = "No";
+
 
 }
 function UndoAddNode(){
@@ -900,6 +905,13 @@ function SaveNode(){
     coursenumdata.set({
       arr: CourseNums,
     });
+
+    firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').update({
+          total_clicked: total,
+        }).catch(function(err) {
+          console.log(err);
+        });
+
     console.log(nodearray);
     console.log(linkarray);
     // .then(function(){

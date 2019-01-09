@@ -13,7 +13,7 @@
     </head>
     <body>
       <div class="ui modal" id="login__modal" style="width: 500px;">
-        <!-- <div class="header"><a onclick="showRegist()">註冊</a> 或 <a onclick="showLogin()" style="color:#4172b3">登入</a></div> -->
+        <div class="header"><a onclick="showRegist()">註冊</a> 或 <a onclick="showLogin()" style="color:#4172b3">登入</a></div>
         <div class="flex-container content">
           <div class="login_logo"><img src="./picture/login_logo.png"></div>
           <p id="errormsg"></p>
@@ -307,6 +307,7 @@
         if(document.getElementById("CourseType").value=="No" && document.getElementById("CourseName")!="No"){
           var course_id = document.getElementById("CourseName").selectedIndex-1;
           console.log(course_data[dept_index-1].ctype[course_id]);
+          console.log("time: "+course_data[dept_index-1].time[course_id]);
           if(course_data[dept_index-1].ctype[course_id]==1){
             document.getElementById("CourseType").value = "1";
           }else if (course_data[dept_index-1].ctype[course_id]==0) {
@@ -314,6 +315,7 @@
           }
           // document.getElementById("CourseType").value = course_data[dept_index-1].ctype[course_id];
         }
+
 
         if(document.getElementById("CourseType").value==0){
           vue_add_new_node.cfilter_data = [];
