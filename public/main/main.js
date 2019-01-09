@@ -544,12 +544,12 @@ for(let i=0; i<index; ++i){
 
 var loginUser = firebase.auth().currentUser;
 
-// firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').set({
-//       required: total_credit1,
-//       elective: total_credit2
-//     }).catch(function(err) {
-//       console.log(err);
-//     });
+firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').update({
+      required: total_credit1,
+      elective: total_credit2
+    }).catch(function(err) {
+      console.log(err);
+    });
 
 console.log("total credits:" + total_credit1 +" and "+ total_credit2);
 
