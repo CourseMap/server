@@ -13,20 +13,20 @@
     </head>
     <body>
       <div class="ui modal" id="login__modal" style="width: 500px;">
-        <div class="header"><a onclick="showRegist()">註冊</a> 或 <a onclick="showLogin()" style="color:#4172b3">登入</a></div>
+        <!-- <div class="header"><a onclick="showRegist()">註冊</a> 或 <a onclick="showLogin()" style="color:#4172b3">登入</a></div> -->
         <div class="flex-container content">
           <div class="login_logo"><img src="./picture/login_logo.png"></div>
           <p id="errormsg"></p>
           <div id="select_dept" style="margin-right:100px">
             <div class="login_input">
-              <p><span>電子信箱 </span><input type="text" name="account" id="account"></p>
+              <!-- <p><span>電子信箱 </span><input type="text" name="account" id="account"></p> -->
               <p><span>用戶名稱 </span><input type="text" name="username" id="username"></p>
               <p><span>系所名稱</span>
                 <select name="dept" id="sel__dept">
                   <option value="No">-----請選擇系所-----</option>
                   <option v-for="(depart,index) in departments">{{depart}}</option>
                 </select></p>
-              <p><span>設定密碼 </span><input type="password" name="password" id="pwd"></p>
+              <!-- <p><span>設定密碼 </span><input type="password" name="password" id="pwd"></p> -->
               <button type="submit" id="regist-btn" class="ui positive icon button">註冊</button>
             </div>
 
@@ -53,7 +53,6 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="../index.html">關於我們</a></li>
                 <li><a id="logout-btn">登出</a></li>
-                <li class="save-btn" style="border-radius:5px;"><a id="SaveButton" onclick="SaveNode()" style="color:#fff;font-weight:bold;">儲存</a></li>
               </ul>
           </div>
         </nav>
@@ -277,79 +276,79 @@
         <script type="text/javascript" src="timetable_test.json"></script>
     </body>
     <script>
-      var course_data = all_course;
-      var dept = [];
-      for (var i=0;i<course_data.length;i++) {
-        dept.push(course_data[i].dep);
-      }
-
-      if(document.getElementById("AddDept").value=="No"){
-        document.getElementById("CourseType").disabled = true;
-        document.getElementById("CourseName").disabled = true;
-      }
-
-      document.addEventListener("change", function() {
-        if(document.getElementById("AddDept").value!="No"){
-          document.getElementById("CourseType").disabled = false;
-          document.getElementById("CourseName").disabled = false;
-        }
-
-        var dept_index = document.getElementById("AddDept").selectedIndex;
-        var course_index = document.getElementById("CourseType").value;
-
-        vue_add_new_node.cfilter_data = course_data[dept_index-1].course;
-        vue_add_new_node.credit_data = course_data[dept_index-1].credit;
-        // document.getElementById("Credits").value =
-        var credit_index = document.getElementById("CourseName").selectedIndex;
-        document.getElementById("Credits").value = course_data[dept_index-1].credit[credit_index-1];
-        console.log(document.getElementById("Credits").value);
-
-        if(document.getElementById("CourseType").value=="No" && document.getElementById("CourseName")!="No"){
-          var course_id = document.getElementById("CourseName").selectedIndex-1;
-          console.log(course_data[dept_index-1].ctype[course_id]);
-          console.log("time: "+course_data[dept_index-1].time[course_id]);
-          if(course_data[dept_index-1].ctype[course_id]==1){
-            document.getElementById("CourseType").value = "1";
-          }else if (course_data[dept_index-1].ctype[course_id]==0) {
-            document.getElementById("CourseType").value = "0";
-          }
-          // document.getElementById("CourseType").value = course_data[dept_index-1].ctype[course_id];
-        }
-
-
-        if(document.getElementById("CourseType").value==0){
-          vue_add_new_node.cfilter_data = [];
-          for(var i=0;i<course_data[dept_index-1].ctype.length;i++){
-            if(course_data[dept_index-1].ctype[i] == 0){
-              vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
-            }
-          }
-        } else if (document.getElementById("CourseType").value==1) {
-          vue_add_new_node.cfilter_data = [];
-          for(var i=0;i<course_data[dept_index-1].course.length;i++){
-            if(course_data[dept_index-1].ctype[i]==1){
-              vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
-            }
-          }
-          console.log(vue_add_new_node.cfilter_data.length);
-        }
-
-      });
-
-
-
-      var vue_add_new_node = new Vue ({
-        el: '#sidenav',
-        data: {
-          course_data: course_data,
-          dept_data: vue_depart_list.departments,
-          cfilter_data: [],
-          credit_data: []
-        },
-        methods: {
-
-        }
-      });
+      // var course_data = all_course;
+      // var dept = [];
+      // for (var i=0;i<course_data.length;i++) {
+      //   dept.push(course_data[i].dep);
+      // }
+      //
+      // if(document.getElementById("AddDept").value=="No"){
+      //   document.getElementById("CourseType").disabled = true;
+      //   document.getElementById("CourseName").disabled = true;
+      // }
+      //
+      // document.addEventListener("change", function() {
+      //   if(document.getElementById("AddDept").value!="No"){
+      //     document.getElementById("CourseType").disabled = false;
+      //     document.getElementById("CourseName").disabled = false;
+      //   }
+      //
+      //   var dept_index = document.getElementById("AddDept").selectedIndex;
+      //   var course_index = document.getElementById("CourseType").value;
+      //
+      //   vue_add_new_node.cfilter_data = course_data[dept_index-1].course;
+      //   vue_add_new_node.credit_data = course_data[dept_index-1].credit;
+      //   // document.getElementById("Credits").value =
+      //   var credit_index = document.getElementById("CourseName").selectedIndex;
+      //   document.getElementById("Credits").value = course_data[dept_index-1].credit[credit_index-1];
+      //   console.log(document.getElementById("Credits").value);
+      //
+      //   if(document.getElementById("CourseType").value=="No" && document.getElementById("CourseName")!="No"){
+      //     var course_id = document.getElementById("CourseName").selectedIndex-1;
+      //     console.log(course_data[dept_index-1].ctype[course_id]);
+      //     console.log("time: "+course_data[dept_index-1].time[course_id]);
+      //     if(course_data[dept_index-1].ctype[course_id]==1){
+      //       document.getElementById("CourseType").value = "1";
+      //     }else if (course_data[dept_index-1].ctype[course_id]==0) {
+      //       document.getElementById("CourseType").value = "0";
+      //     }
+      //     // document.getElementById("CourseType").value = course_data[dept_index-1].ctype[course_id];
+      //   }
+      //
+      //
+      //   if(document.getElementById("CourseType").value==0){
+      //     vue_add_new_node.cfilter_data = [];
+      //     for(var i=0;i<course_data[dept_index-1].ctype.length;i++){
+      //       if(course_data[dept_index-1].ctype[i] == 0){
+      //         vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
+      //       }
+      //     }
+      //   } else if (document.getElementById("CourseType").value==1) {
+      //     vue_add_new_node.cfilter_data = [];
+      //     for(var i=0;i<course_data[dept_index-1].course.length;i++){
+      //       if(course_data[dept_index-1].ctype[i]==1){
+      //         vue_add_new_node.cfilter_data.push(course_data[dept_index-1].course[i]);
+      //       }
+      //     }
+      //     console.log(vue_add_new_node.cfilter_data.length);
+      //   }
+      //
+      // });
+      //
+      //
+      //
+      // var vue_add_new_node = new Vue ({
+      //   el: '#sidenav',
+      //   data: {
+      //     course_data: course_data,
+      //     dept_data: vue_depart_list.departments,
+      //     cfilter_data: [],
+      //     credit_data: []
+      //   },
+      //   methods: {
+      //
+      //   }
+      // });
 
     </script>
 </html>

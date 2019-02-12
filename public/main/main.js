@@ -59,48 +59,48 @@ function showLogin() {
 }
 
 //button disabled or enabled
-document.getElementById("regist-btn").disabled = true;
-document.getElementById("login-btn").disabled = true;
+// document.getElementById("regist-btn").disabled = true;
+// document.getElementById("login-btn").disabled = true;
 
-document.addEventListener("input", function(){
-
-  if(document.getElementById("username").value.length == 0 || pwd.value.length==0 || account.value.length==0 || document.getElementById("sel__dept").value=="No"){
-    document.getElementById("regist-btn").disabled = true;
-  } else {
-    document.getElementById("regist-btn").disabled = false;
-  }
-
-  if(document.getElementById("log__em").value.length == 0 || document.getElementById("log__pass").value.length==0){
-    document.getElementById("login-btn").disabled = true;
-  } else {
-    document.getElementById("login-btn").disabled = false;
-  }
-}, false);
+// document.addEventListener("input", function(){
+//
+//   if(document.getElementById("username").value.length == 0 || pwd.value.length==0 || account.value.length==0 || document.getElementById("sel__dept").value=="No"){
+//     document.getElementById("regist-btn").disabled = true;
+//   } else {
+//     document.getElementById("regist-btn").disabled = false;
+//   }
+//
+//   if(document.getElementById("log__em").value.length == 0 || document.getElementById("log__pass").value.length==0){
+//     document.getElementById("login-btn").disabled = true;
+//   } else {
+//     document.getElementById("login-btn").disabled = false;
+//   }
+// }, false);
 
 //activity after clicking register button
 registerSmtBtn.addEventListener("click", function(){
-  console.log(account.value);
-  firebase.auth().createUserWithEmailAndPassword(account.value, pwd.value).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMsg = error.message;
-    console.log(errorMsg);
-    document.getElementById("errormsg").innerHTML = errorMsg;
-  }).then(function() {
-
-    var loginUser = firebase.auth().currentUser;
-    console.log("log in as :", loginUser);
-
-    firebase.database().ref('users/' + loginUser.uid).set({
-      email: loginUser.email,
-      username: document.getElementById("username").value,
-      departName: document.getElementById("sel__dept").value,
-      departID: document.getElementById("sel__dept").selectedIndex,
-    })
-    departIndex = document.getElementById("sel__dept").selectedIndex;
-  }).then(function getmap() {
-    generateMap();
-  });
+  // firebase.auth().createUserWithEmailAndPassword(account.value, pwd.value).catch(function(error) {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMsg = error.message;
+  //   console.log(errorMsg);
+  //   document.getElementById("errormsg").innerHTML = errorMsg;
+  // }).then(function() {
+  //
+  //   var loginUser = firebase.auth().currentUser;
+  //   console.log("log in as :", loginUser);
+  //
+  //   firebase.database().ref('users/' + loginUser.uid).set({
+  //     email: loginUser.email,
+  //     username: document.getElementById("username").value,
+  //     departName: document.getElementById("sel__dept").value,
+  //     departID: document.getElementById("sel__dept").selectedIndex,
+  //   })
+  //   departIndex = document.getElementById("sel__dept").selectedIndex;
+  // }).then(function getmap() {
+  $("#login__modal").modal('hide');
+    generateMap(document.getElementById("sel__dept").selectedIndex);
+  // });
 
 }, false);
 
@@ -126,40 +126,40 @@ var logEmail = document.getElementById("log__em");
 var logPwd = document.getElementById("log__pass");
 var loginBtn = document.getElementById("login-btn");
 
-if(loginBtn){
-  loginBtn.addEventListener("click", function() {
-    console.log(logEmail.value);
-    //login auth
-    firebase.auth().signInWithEmailAndPassword(logEmail.value, logPwd.value).catch(function(err) {
-      var errorCode = err.code;
-      var errorMsg = err.message;
-      document.getElementById("errormsg").innerHTML = errorMsg;
-      console.log(errorMsg);
-    }).then(function(){
-      //get user data
-      var loginUser = firebase.auth().currentUser;
-      firebase.database().ref('/users/' + loginUser.uid).once('value').then(function(snapshot) {
-          departIndex = snapshot.val().departID;
-          // console.log(passIndex(departIndex));
-        }).then(function(){
-          firebase.database().ref('/users/'+loginUser.uid+'/coursenumdata/arr').once('value').then(function(snapshot){
-            var coursenumdata = snapshot.val();
-            CourseNums = coursenumdata;
-          });
-          firebase.database().ref('/users/'+loginUser.uid+'/linkdata/arr').once('value').then(function(snapshot){
-            var linkdata = snapshot.val();
-            LinkArray = linkdata;
-            console.log(LinkArray);
-          });
-          firebase.database().ref('/users/'+loginUser.uid+'/nodedata/arr').once('value').then(function(snapshot) {
-            var Coursename = snapshot.val();
-            data_json = Coursename;
-            printthemap(data_json);
-          });
-        });
-    });
-  }, false);
-}
+// if(loginBtn){
+//   loginBtn.addEventListener("click", function() {
+//     console.log(logEmail.value);
+//     //login auth
+//     firebase.auth().signInWithEmailAndPassword(logEmail.value, logPwd.value).catch(function(err) {
+//       var errorCode = err.code;
+//       var errorMsg = err.message;
+//       document.getElementById("errormsg").innerHTML = errorMsg;
+//       console.log(errorMsg);
+//     }).then(function(){
+//       //get user data
+//       var loginUser = firebase.auth().currentUser;
+//       firebase.database().ref('/users/' + loginUser.uid).once('value').then(function(snapshot) {
+//           departIndex = snapshot.val().departID;
+//           // console.log(passIndex(departIndex));
+//         }).then(function(){
+//           firebase.database().ref('/users/'+loginUser.uid+'/coursenumdata/arr').once('value').then(function(snapshot){
+//             var coursenumdata = snapshot.val();
+//             CourseNums = coursenumdata;
+//           });
+//           firebase.database().ref('/users/'+loginUser.uid+'/linkdata/arr').once('value').then(function(snapshot){
+//             var linkdata = snapshot.val();
+//             LinkArray = linkdata;
+//             console.log(LinkArray);
+//           });
+//           firebase.database().ref('/users/'+loginUser.uid+'/nodedata/arr').once('value').then(function(snapshot) {
+//             var Coursename = snapshot.val();
+//             data_json = Coursename;
+//             printthemap(data_json);
+//           });
+//         });
+//     });
+//   }, false);
+// }
 
 //log out
 var logoutBtn = document.getElementById("logout-btn");
@@ -399,7 +399,7 @@ function printthemap(data_json){
   Canvas.model = Diagram; // build Diagram
 };
 
-function generateMap(){
+function generateMap(departIndex){
 credit1 = 0;
 credit2 = 0;
 total_credit1 = 0;
@@ -431,9 +431,9 @@ for(let i=1; i<=8; ++i){
 
 //select_list2
 const key = Object.keys(AllData)[departIndex-1];
+console.log(key);
 // const key = Object.keys(AllData)[passIndex(departIndex)];
 const data_json = AllData[key];
-console.log(data_json);
 // const key = Object.keys(AllData)[24];
 // const data_json = AllData[key];
 // console.log(data_json);
@@ -542,14 +542,14 @@ for(let i=0; i<index; ++i){
     DataArray[i].Credits = data_json[10][i];
 }
 
-var loginUser = firebase.auth().currentUser;
-
-firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').update({
-      required: total_credit1,
-      elective: total_credit2
-    }).catch(function(err) {
-      console.log(err);
-    });
+// var loginUser = firebase.auth().currentUser;
+//
+// firebase.database().ref('/users/' + loginUser.uid + '/credit_data/').update({
+//       required: total_credit1,
+//       elective: total_credit2
+//     }).catch(function(err) {
+//       console.log(err);
+//     });
 
 console.log("total credits:" + total_credit1 +" and "+ total_credit2);
 
